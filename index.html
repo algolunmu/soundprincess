@@ -1,0 +1,746 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#e8f9ff"><title>SOUND PRINCESS v0.3.2</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&display=swap');
+
+:root{--bg:#e9f9ff;--panel:#f8feff;--blue:#70cdeb;--edge:#addde9;--edge2:#80bdd2;--ink:#163a52;--muted:#617c8b;--sky:#4da9cd;--pink:#e99ec9;--yellow:#edce75;--mint:#8ddbc7;--shade:#cfeef7}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:radial-gradient(ellipse at 10% 0%,#fff 0,transparent 39%),radial-gradient(ellipse at 93% 10%,#c7efff 0,transparent 38%),var(--bg);font-family:system-ui,-apple-system,"Helvetica Neue",sans-serif;min-height:100dvh}button,select,input,textarea{font:inherit}button,select,input,textarea{color:var(--ink)}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.45;cursor:not-allowed}.pixel{font-family:"Courier New",Consolas,monospace;font-weight:1000;letter-spacing:.055em;text-transform:uppercase;text-shadow:1px 1px 0 #fff,2px 2px 0 #a9dbe9}.shell{max-width:1180px;margin:auto;padding:16px 12px 65px}.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}.logo{font-size:clamp(23px,6vw,43px);line-height:1}.logo .milk{color:var(--sky)}.version{display:inline-block;margin-left:8px;color:#608697;font-size:11px;vertical-align:middle;letter-spacing:0;text-shadow:none}.subtitle{margin:5px 0 0;font-size:11px;letter-spacing:.11em;color:var(--muted)}.status{font-size:12px;line-height:1.4;max-width:42%;text-align:right}.led{display:inline-block;width:9px;height:9px;border:1px solid #fff;box-shadow:0 0 0 1px #719aaa;background:#f0ba9b;margin-right:6px}.led.on{background:#53c69b}.panel,.track{background:rgba(251,254,255,.9);border:2px solid var(--edge);box-shadow:4px 4px 0 var(--shade);padding:14px;margin-bottom:14px}.head{font-size:12px;font-weight:900;letter-spacing:.09em;margin:0 0 11px}.grid{display:grid;gap:10px}.conn{grid-template-columns:minmax(0,1fr) auto}.transport{grid-template-columns:repeat(4,minmax(0,1fr))}.label{display:block;color:var(--muted);font-size:11px;font-weight:750;letter-spacing:.03em;margin-bottom:5px}select,input[type=number],input[type=password],input[type=text],textarea{width:100%;min-width:0;border:1px solid var(--edge2);border-radius:0;background:white;padding:10px;font-size:14px;outline-offset:2px}select{min-height:40px}textarea{resize:vertical;min-height:60px}.btn{background:#f3fcff;border:1px solid #83c2d9;border-bottom-width:3px;min-height:39px;padding:8px 12px;font-weight:800;font-size:12px;letter-spacing:.045em}.btn:hover{background:#e7f6fd}.btn:active{transform:translateY(2px);border-bottom-width:1px}.btn.primary{background:#8ed8ed;border-color:#479abb;color:#123f51}.btn.stop{background:#ffdfeb;border-color:#d99ab4}.btn.alt{background:#fff9e9;border-color:#d6bf7d}.btnrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.btnrow .btn{flex:1}.small{font-size:11px;color:var(--muted);line-height:1.5}.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end}.range{accent-color:var(--sky);max-width:100%}.rangegroup{min-width:115px;flex:1}.rangegroup input{width:100%}.level{font-weight:900;color:var(--sky)}.barrail{height:11px;border:1px solid var(--edge2);background:#fff;overflow:hidden;margin-top:10px}.barfill{width:0%;height:100%;background:linear-gradient(90deg,var(--pink),var(--sky));transition:width .08s linear}.readout{display:flex;justify-content:space-between;gap:8px;margin-top:7px}.studio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.track{margin:0;position:relative;min-width:0}.track-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.name{font-size:18px;white-space:nowrap}.chan{font:900 11px "Courier New",monospace;color:#6a8997}.ident{border-left:7px solid var(--accent);padding-left:9px}.toggles{display:flex;gap:5px}.mini{padding:7px 9px;background:white;border:1px solid var(--edge2);font-weight:800;font-size:11px}.mini.on{background:#ffd1dc;border-color:#c17b92}.mini.solo.on{background:#fff0bb;border-color:#c8a44e}.mini:active{transform:translateY(1px)}.track-note{margin:9px 0;color:var(--muted);font-size:11px;line-height:1.4}.track-section{margin:14px 0 4px}.section-title{font-size:10px;color:#678a99;font-weight:900;letter-spacing:.13em;margin-bottom:7px}.dials{display:flex;flex-wrap:wrap;gap:10px 5px}.dialgroup{width:calc(20% - 4px);min-width:77px;display:flex;align-items:center;flex-direction:column;gap:3px}.dial{--val:0;position:relative;width:60px;height:60px;border-radius:50%;border:3px solid #d1e9ef;box-shadow:inset 0 0 0 3px #fff,2px 2px 0 #b9dfe9;background:conic-gradient(from 225deg,var(--accent) 0deg, var(--accent) calc(var(--val)*2.7deg),#dfedf2 calc(var(--val)*2.7deg),#dfedf2 270deg,#f8ffff 270deg 360deg);display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none;cursor:ns-resize}.dial::after{content:"";position:absolute;left:50%;top:5px;width:4px;height:10px;background:#2b728b;transform:translateX(-50%) rotate(calc(-135deg + var(--val)*2.7deg));transform-origin:2px 25px}.dialcore{width:43px;height:43px;background:#fff;border-radius:50%;display:grid;place-items:center;border:1px solid #c3dce4;font:900 14px "Courier New",monospace}.dial:focus{outline:3px solid #2a7390;outline-offset:2px}.dialname{text-align:center;font-size:10px;line-height:1.16;min-height:24px;color:var(--ink);font-weight:750;overflow-wrap:anywhere}.program{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:end;margin-top:12px}.program .btn{height:40px}.stepview{display:grid;grid-template-columns:repeat(64,1fr);gap:1px;margin:12px 0 2px;height:12px}.step{min-width:0;background:#e7eef1;border:1px solid #d4e3e7}.step:nth-child(16n+1){border-left:2px solid #739cb0}.step.note{background:var(--accent);border-color:#b5dae4}.step.play{background:#265d7b;border-color:#265d7b}.effects{border-top:1px dashed var(--edge2);margin-top:12px;padding-top:10px}.effects summary{font-size:11px;font-weight:900;cursor:pointer;letter-spacing:.06em}.effects .dials{margin-top:11px}.effects .dialgroup{width:calc(20% - 4px)}.fx-extra{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.desc{font-size:11px;color:var(--muted);line-height:1.5}.compose{display:grid;grid-template-columns:1fr 1fr;gap:10px}.compose .wide{grid-column:1 / -1}.log{max-height:92px;overflow:auto;white-space:pre-wrap;font:11px "Courier New",monospace;color:#617d8c;background:#f3fafc;border:1px solid var(--edge);padding:10px}.footer{margin-top:18px;color:#648392;font-size:11px;line-height:1.6}.badge{font:800 10px "Courier New",monospace;border:1px solid var(--edge2);padding:4px 6px;background:#e6f9fd}.breather{height:10px}@media(min-width:1050px){.studio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.track:last-child{grid-column:1 / -1}}@media(max-width:720px){.transport{grid-template-columns:repeat(2,minmax(0,1fr))}.studio-grid{grid-template-columns:1fr}.compose{grid-template-columns:1fr}.compose .wide{grid-column:auto}}@media(max-width:390px){.shell{padding:10px 8px 40px}.panel,.track{padding:10px}.dialgroup{min-width:67px}.dial{height:54px;width:54px}.dialcore{height:38px;width:38px}.dialname{font-size:9px}.effects .dialgroup{min-width:67px}}
+
+/* SOUND PRINCESS / compact six-channel milk-blue console */
+:root{--bg:#e8f9ff;--panel:#f8fdff;--edge:#b7dcea;--sky:#459ccc;--ink:#183f59;--shade:#baddf1}
+body{background:radial-gradient(ellipse at 20% -5%,#fff 0%,transparent 46%),linear-gradient(160deg,#e2f5ff,#f2fbff 52%,#d5eff8)}
+.shell{max-width:1420px;padding:12px 10px 45px}.mast{margin-bottom:9px}.logo{font-size:clamp(24px,4.6vw,45px)}
+.console-top{display:grid;grid-template-columns:1.1fr 2.2fr 1fr;gap:9px}.panel{margin-bottom:10px;padding:11px}.panel .head{margin-bottom:8px}
+.transport-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.transport-strip select,.transport-strip input{padding:6px;min-height:33px;height:33px;font-size:12px}
+.console-connect{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px}.console-connect .btn{padding:6px 9px}.console-connect select{font-size:11px;min-height:34px;padding:3px}
+.transport-buttons{display:grid;grid-template-columns:1fr 1fr;gap:5px}.transport-buttons .btn{min-height:32px;padding:4px;font-size:11px}.barrail{margin-top:8px}
+.console-panel{padding:9px 10px 12px}.panel-heading{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}.compact-message{font-size:11px;color:#63879b}
+.console-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.strip{min-width:0;background:linear-gradient(#fefeff,#e7f6fc);border:2px solid #aed5e7;border-top:6px solid var(--accent);padding:8px 8px 7px;box-shadow:2px 3px 0 #c9e6f0}
+.strip.selected{outline:2px solid #428fb4;outline-offset:-3px;background:linear-gradient(#fff,#d8f3ff)}
+.strip-head{display:flex;align-items:center;justify-content:space-between;gap:5px;width:100%;border:0;background:transparent;cursor:pointer;color:#23485f;padding:2px 1px 6px;text-align:left}
+.strip-head strong{font:900 clamp(10px,1.25vw,16px) monospace;letter-spacing:.06em}.strip-head small{font:700 10px monospace;color:#66889a;white-space:nowrap}
+.strip-toggles{display:flex;gap:3px;margin-bottom:6px}.strip-toggles .mini{flex:1;padding:5px 1px;font-size:10px}
+.strip-faders{display:grid;gap:6px}.vol-line{padding:5px 3px 6px;background:#dff5ff;border:1px solid #9fd5e9;color:#256a8d}.vol-line output{font-weight:900}.fx-line{display:grid;grid-template-columns:35px minmax(0,1fr) 29px;align-items:center;gap:5px;color:#507c90;font-size:10px;font-family:monospace;font-weight:900}
+.fx-line input[type=range]{width:100%;min-width:0;accent-color:var(--accent);height:25px;cursor:pointer}.fx-line output{text-align:right;font:900 11px monospace;color:#276987}
+.tiny-step{display:grid;grid-template-columns:repeat(64,minmax(0,1fr));height:8px;gap:0;margin-top:9px}.tiny-step .step{border-width:0;min-width:0}.tiny-step .step:nth-child(16n+1){border-left:1px solid #8cacbe}
+.selected-panels{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,.36fr);gap:10px}
+.strip-knobs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin-top:7px}.knobslot{min-width:0;display:flex;flex-direction:column;gap:3px;background:linear-gradient(#fff,#eef9fd);border:1px solid #c6e5ef;padding:5px 4px 6px}.knobslot.active{outline:2px solid #428fb4;outline-offset:-2px;background:linear-gradient(#fff,#dff5ff)}
+.knob-top{display:flex;justify-content:space-between;align-items:center;gap:4px}.knob-number{font:900 10px monospace;color:#5b8393}.knob-mini-value{font:900 10px monospace;color:#276987;background:#f7fdff;border:1px solid #cae7f1;padding:1px 4px;min-width:28px;text-align:center}
+.inspo-fader{width:100%;min-width:0;accent-color:var(--accent);height:20px}.knobslot select{font-size:9px;min-height:28px;height:28px;padding:2px 3px;max-width:100%;text-overflow:ellipsis}
+.under-rack{display:grid;grid-template-columns:180px 180px minmax(0,1fr);gap:10px;margin-top:10px;align-items:end}.under-rack .mini-input{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px}.under-rack input[type=range]{width:100%;accent-color:var(--sky)}.under-rack .label{font-size:10px}
+.program-inline{display:flex;gap:5px}.program-inline select{height:36px;min-height:36px;padding:3px 6px;flex:1}.program-inline button{min-width:70px}
+.delay-controls{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.delay-controls select{width:auto;min-width:110px;min-height:36px;height:36px;padding:6px;font-size:12px}.delay-controls .label{margin-top:2px}
+.training-block{display:grid;grid-template-columns:200px 200px 1fr;gap:10px;align-items:start}.training-block .label{margin:0 0 5px}.training-block textarea{min-height:58px;height:78px}.trainer-actions{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}.trainer-actions .btn{min-height:35px}.train-help{font-size:11px;color:#618494;line-height:1.5}
+.details-panel>summary{font:900 12px monospace;letter-spacing:.05em;cursor:pointer;user-select:none;list-style:none}.details-panel>summary::before{content:'＋';color:var(--sky);margin-right:8px}.details-panel[open]>summary::before{content:'−'}.details-body{margin-top:12px}
+.composer-grid{display:grid;grid-template-columns:200px 170px 1fr auto;gap:9px;align-items:end}.composer-grid textarea{min-height:56px;height:60px}.composer-grid .btn{height:40px}
+.diag-footer{font-size:10px;color:#6d8999;line-height:1.6}.small{font-size:10px}.console-note{margin-top:8px;font-size:10px;color:#5b8194}
+@media(max-width:1050px){.console-top{grid-template-columns:1fr 1fr}.console-top>.panel:last-child{grid-column:1/-1}.composer-grid{grid-template-columns:1fr 1fr}.composer-grid .wide{grid-column:1/-1}.training-block{grid-template-columns:1fr 1fr}.training-block .wide{grid-column:1/-1}.strip{padding:6px}.fx-line{grid-template-columns:25px minmax(0,1fr) 24px;gap:2px}}
+@media(max-width:680px){.shell{padding:8px 6px 30px}.panel{padding:8px}.mast{align-items:start}.status{font-size:10px}.console-top{grid-template-columns:1fr}.console-top>.panel:last-child{grid-column:auto}.console-grid{gap:6px;grid-template-columns:repeat(5,minmax(174px,1fr));width:max-content;min-width:100%}.console-panel{overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}.strip{padding:5px 5px;border-width:1px;border-top-width:4px}.strip-head{flex-wrap:wrap;justify-content:center;text-align:center;min-height:39px;gap:1px}.strip-head strong{font-size:11px;letter-spacing:0}.strip-head small{width:100%;font-size:9px}.strip-toggles{gap:1px}.strip-toggles .mini{font-size:10px;padding:4px 0;min-height:26px}.fx-line{display:flex;flex-direction:column;gap:0;border-bottom:1px dashed #d5ebf3;padding:0 0 2px}.fx-line span{font-size:10px}.fx-line output{font-size:10px}.fx-line input[type=range]{width:96%;height:25px}.selected-panels{grid-template-columns:1fr}.strip-knobs{grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.knobslot{padding:4px 2px}.knobslot select{font-size:10px;min-height:30px;height:30px}.under-rack{grid-template-columns:1fr 1fr}.under-rack #programArea{grid-column:1/-1}.composer-grid,.training-block{grid-template-columns:1fr}.composer-grid .wide,.training-block .wide{grid-column:auto}.diag-footer{font-size:10px}}
+
+/* v0.2.1 — readable retro 8-bit typography. No packaged font binaries. */
+:root{--retro-body:'Pixelify Sans','Courier New',monospace;--retro-title:'Press Start 2P','Courier New',monospace}
+body,button,select,input,textarea,output,.small,.train-help,.console-note,.compact-message,.badge,.log,.desc,.footer{font-family:var(--retro-body)!important}
+.strip-head strong,.strip-head small,.fx-line,.fx-line output,.knob-number,.knob-face span,.badge,.readout,.subtitle,.label,.details-panel>summary,.dialcore{font-family:var(--retro-body)!important;font-weight:700}
+.logo,.head.pixel,.pixel.logo,.panel .head,.details-panel>summary{font-family:var(--retro-title)!important;font-weight:400;letter-spacing:0;line-height:1.65}
+.logo{font-size:clamp(16px,2.9vw,31px)!important;line-height:1.45}
+.logo .version{font-family:var(--retro-body);font-weight:700;font-size:12px;line-height:1}
+.panel .head,.details-panel>summary{font-size:9px!important;line-height:1.8}
+.subtitle.pixel,.readout .pixel{font-family:var(--retro-body)!important;font-size:12px;letter-spacing:0.035em;text-transform:uppercase;text-shadow:none}
+.label{font-size:12px;letter-spacing:.02em}.strip-head strong{font-size:clamp(10px,1.25vw,16px);letter-spacing:0}
+.fx-line{font-size:12px}.fx-line output{font-size:12px}
+.mixer-master-fx{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(170px,.9fr);align-items:end;gap:8px;margin:8px 0 12px;padding:10px;background:#e9f7ff;border:1px solid #acd7e8;box-shadow:inset 2px 2px 0 #ffffff}
+.mixer-master-fx select{min-height:37px;padding:5px 8px;font-size:13px}
+.mixer-master-fx .label{font-size:12px;margin-bottom:3px;color:#2c7595}
+.fx-type-note{margin:0;color:#547b90;font-size:12px;line-height:1.35}
+.fx-status{display:block;color:#356f87;font-size:11px;line-height:1.3;margin-top:3px}
+@media(max-width:760px){.mixer-master-fx{grid-template-columns:1fr 1fr}.mixer-master-fx .fx-type-meta{grid-column:1/-1}.logo{font-size:clamp(14px,4.2vw,24px)!important}.subtitle.pixel{font-size:10px}.panel .head,.details-panel>summary{font-size:8px!important}}
+@media(max-width:390px){.logo{font-size:14px!important}.mixer-master-fx select{font-size:12px}.strip-head strong{font-size:10px}.fx-line span{font-size:11px}}
+
+.mixer-swipe-hint{display:none;margin:0 0 6px}@media(max-width:680px){.mixer-swipe-hint{display:block}}
+/* Shared API key, dedicated single-screen panel */
+.claude-api-panel{border-color:#85bfdc;background:linear-gradient(100deg,#f5fcff,#eaf8ff)}
+.claude-api-grid{display:grid;grid-template-columns:minmax(235px,1.3fr) minmax(185px,.8fr) auto;gap:9px;align-items:end}
+.claude-api-grid input,.claude-api-grid select{min-height:40px;height:40px}
+.api-buttons{display:flex;gap:5px}.api-buttons .btn{white-space:nowrap;min-height:40px}
+.api-note{margin:8px 0 0}
+@media(max-width:760px){.claude-api-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.claude-api-key{grid-column:1/-1}.api-buttons{grid-column:1/-1}.api-buttons .btn{flex:1}}
+@media(max-width:440px){.claude-api-grid{grid-template-columns:1fr}.claude-api-key,.api-buttons{grid-column:auto}}
+
+/* v0.3.0: Compact editable inspiration designer, separate from mixer */
+.console-scroll{overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-color:#91cce2 #e7f8fd}
+@media(max-width:800px){.console-grid{min-width:920px;grid-template-columns:repeat(5,minmax(175px,1fr))}.strip{padding:6px}.fx-line{display:grid;grid-template-columns:31px minmax(0,1fr) 27px;gap:3px}.fx-line input[type=range]{height:24px}.strip-head{flex-wrap:nowrap;min-height:unset}.strip-head strong{font-size:12px;letter-spacing:0}.strip-head small{width:auto}.knobslot{padding:5px 3px}.knobslot select{font-size:10px}}
+
+.designer-panel{background:linear-gradient(145deg,#f8feff,#e7f7fd)}
+.designer-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:9px;align-items:end}
+.designer-grid .wide{grid-column:1/-1}.designer-grid textarea{min-height:70px}
+.designer-buttons{display:flex;gap:5px;align-items:end}.designer-buttons .btn{min-height:40px;padding:7px}
+.train-parameters-title{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:7px;margin:15px 0 5px}
+.parameter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.param-cell{min-width:0;padding:7px;background:#f6fdff;border:1px solid #c1e3f0}
+.param-heading{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#416f89;font-size:11px;font-weight:bold}
+.param-cell output{color:#19638a;font-weight:900;font-variant-numeric:tabular-nums}
+.param-cell input[type=range]{width:100%;accent-color:#64b5dd;min-height:27px}
+.param-cell .small{font-size:10px}
+.designer-actions,.preview-row{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:10px 0}
+.preview-row{padding:8px;background:#eaf8ff;border:1px dashed #9bccdf}
+.preview-row .small{flex:1;min-width:210px}.preview-row .btn{min-width:130px}
+.designer-panel [disabled]{opacity:.45;cursor:not-allowed}
+.strip-program{margin-top:8px;padding:6px 3px;background:#eaf7fe;border:1px solid #b5ddea}
+.strip-program .label{font-size:10px;margin-bottom:4px}
+.strip-program-controls{display:flex;gap:3px;align-items:stretch}
+.strip-program-controls select{min-width:0;flex:1;width:100%;font-size:10px;height:32px;min-height:32px;padding:2px 3px}
+.strip-program-controls button{padding:3px 6px;min-height:32px;font-size:10px;flex:none}
+@media(max-width:680px){.strip-program-controls select{font-size:11px}}
+.vol-line{background:#dceffd;border:1px solid #9ed0e6;padding:3px;border-radius:2px}
+@media(max-width:950px){.parameter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.designer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.designer-buttons{grid-column:1/-1}.designer-grid .wide{grid-column:1/-1}.parameter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-row .small{min-width:100%}}
+
+/* v0.3.0 / per-track octave and independent echo consoles */
+.strip-sound-tools{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px;padding:7px 5px;border:1px solid #b1dce9;background:#e7f6fd}
+.strip-sound-tools .field{min-width:0}.strip-sound-tools .field-full{grid-column:1 / -1}
+.strip-sound-tools .label{font-size:10px;margin-bottom:3px;color:#4a7794}
+.strip-sound-tools select,.strip-sound-tools input[type=number]{width:100%;min-width:0;min-height:30px;height:30px;padding:3px 4px;font-size:12px}
+.strip-sound-tools .sound-note{grid-column:1/-1;font-size:10px;line-height:1.25;color:#5a8296}
+.strip-knobs{margin-top:6px}.vol-line{padding:4px}
+.strip-improv{margin-top:6px;padding:6px 5px;background:#f2fbff;border:1px solid #c2e5f1}
+.strip-improv-label{display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:11px;color:#487e98;font-weight:800}
+.strip-improv output{color:#246a92;white-space:nowrap;font-weight:900}
+.strip-improv input[type=range]{width:100%;min-width:0;height:24px;accent-color:var(--accent);cursor:pointer}
+@media(max-width:680px){.strip-improv{padding:4px 3px}.strip-improv-label{font-size:10px}}
+
+
+/* v0.3.0 / six-channel arrangement, fine swing dial, expanded master hardware FX */
+.swing-row{border-top:1px solid #c6e6f2;margin-top:9px;padding-top:7px}
+.swing-adjust{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.swing-adjust .btn{min-height:28px;padding:3px 9px}
+.swing-knob{width:69px;height:69px;border-radius:50%;border:4px solid #afdbec;background:conic-gradient(from 225deg,#90cce4 0deg,#e1f4fb 270deg,#fff 270deg 360deg);box-shadow:inset 0 0 0 4px #fff,2px 2px #b4d9e9;cursor:ns-resize;touch-action:none;position:relative;display:grid;place-items:center;user-select:none;outline-offset:3px}
+.swing-knob:before{content:'';position:absolute;top:6px;left:calc(50% - 3px);width:6px;height:12px;background:#287998;border-radius:2px;transform-origin:3px 25px;transform:rotate(var(--swing-angle))}
+.swing-knob-center{width:49px;height:49px;border:1px solid #b4d5e5;border-radius:50%;display:grid;place-items:center;font:900 12px 'Pixelify Sans',monospace;background:#f7feff}
+.fx-master-params{grid-column:1/-1;display:grid;gap:5px;border-top:1px dashed #a1cfe2;padding-top:9px}
+.fx-group-label{font:900 11px 'Pixelify Sans',monospace;color:#286a8a;margin-top:5px}
+.master-param-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.master-param{display:flex;flex-direction:column;min-width:0;gap:3px;padding:6px;background:#f5fcff;border:1px solid #c2e5f0;font:800 10px 'Pixelify Sans',monospace;color:#4b7690}
+.master-param input[type=range]{width:100%;accent-color:#4aabd2;min-width:0}
+.master-param output{text-align:right;color:#266481;font-weight:900}
+.master-param input[type=number]{height:32px;min-height:32px;font-size:12px;padding:4px}
+.master-echo-grid{display:grid;grid-template-columns:180px 180px;gap:8px}
+@media(max-width:890px){.master-param-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.master-param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.master-echo-grid{grid-template-columns:1fr 1fr}.swing-row .small{font-size:10px}}
+/* v0.3.2 — Yoko lyric arrangement and multi-loop vocal sequencing */
+.vocal-panel{border-color:#a6dbea;background:linear-gradient(135deg,#fffafd,#effbff)}
+.vocal-editor{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:10px;align-items:start}
+.vocal-text textarea{min-height:92px;resize:vertical;padding:10px;background:#fff}
+.vocal-options{display:grid;gap:8px}.vocal-options select{min-width:0}
+.vocal-lock{display:flex;align-items:center;gap:7px;font-size:11px;color:#416e87;line-height:1.35;cursor:pointer}
+.vocal-lock input{width:16px;height:16px;accent-color:#499bbf;flex:0 0 auto}
+.vocal-status{margin-top:9px;padding:7px 9px;background:#e8f7ff;border:1px solid #c4e5f2;color:#315d73}
+@media(max-width:560px){.vocal-editor{grid-template-columns:minmax(0,1fr)}.vocal-options{grid-template-columns:1fr 1fr;align-items:end}.vocal-options .vocal-lock{grid-column:1/-1}}
+
+/* v0.3.2 — named loop memories, all on the existing console page */
+.loop-memory-panel{border-color:#97cfe4;background:linear-gradient(135deg,#fcfeff,#e9f8ff)}
+.memory-controls{display:grid;grid-template-columns:minmax(130px,1.2fr) minmax(170px,1.6fr) repeat(3,auto);gap:7px;align-items:end}
+.memory-controls select,.memory-controls input{height:37px;min-height:37px;padding:5px 7px}
+.memory-controls .btn{min-height:37px;padding:5px 8px}
+.memory-tools{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:8px}
+.memory-tools .btn{min-height:33px;padding:6px 9px}
+.memory-check{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#336885;line-height:1.35;cursor:pointer}
+.memory-check input{height:18px;width:18px;accent-color:#4aabd2}
+.memory-info{font-size:11px;line-height:1.5;margin-top:9px;color:#366a83;background:#f4fcff;padding:7px 9px;border:1px solid #c7e8f3}
+@media(max-width:860px){.memory-controls{grid-template-columns:1fr 1fr}.memory-controls .btn{min-height:34px}}
+@media(max-width:500px){.memory-controls{grid-template-columns:1fr 1fr}.memory-controls .memory-name{grid-column:1/-1}.memory-controls .memory-select{grid-column:1/-1}.memory-controls .btn{padding:5px 3px;font-size:11px}}
+</style></head><body><main class="shell">
+<header class="mast"><div><div class="logo pixel">SOUND <span class="milk">PRINCESS</span><span class="version">v0.3.2</span></div><div class="subtitle pixel">MILK BLUE • SIX CHANNELS • AI COMPOSER • 16 BEATS</div></div><div class="status"><span class="led" id="led"></span><span id="midistatus">MIDI OFFLINE</span></div></header>
+<div class="console-top">
+<section class="panel"><div class="head pixel">01 / POCKET MIKU</div><div class="console-connect"><select id="ports" aria-label="Web MIDI output"><option value="">Connect MIDI first</option></select><button class="btn primary" id="connect">CONNECT</button></div><p class="small">ONE MIDI output • CH 1 Yoko • 2 Bass • 3 Chords A • 4 Chords B • 5 Solo • 10 Drums</p></section>
+<section class="panel"><div class="head pixel">02 / GLOBAL MUSIC</div><div class="transport-strip"><div><label class="label" for="bpm">BPM</label><input type="number" id="bpm" min="50" max="220" value="110"></div><div><label class="label" for="key">KEY</label><select id="key"></select></div><div><label class="label" for="scale">SCALE</label><select id="scale"></select></div><div><label class="label" for="chordCount">CHORD PATTERN</label><select id="chordCount"><option value="1">1 CHORD</option><option value="2">2 CHORDS</option><option value="3">3 CHORDS</option><option value="4" selected>4 CHORDS</option></select></div></div><div class="swing-row"><label class="label">SWING · OFFBEAT SHIFT</label><div class="swing-adjust"><button class="btn" id="swingDown" aria-label="Reduce swing by 1 millisecond">−</button><div class="swing-knob" id="swingDial" tabindex="0" role="slider" aria-label="Global swing offbeat timing shift in milliseconds" aria-valuemin="-60" aria-valuemax="60" aria-valuenow="0" aria-valuetext="Straight 0 milliseconds" style="--swing-angle:0deg"><span class="swing-knob-center" id="swingReadout">0 ms</span></div><button class="btn" id="swingUp" aria-label="Increase swing by 1 millisecond">+</button><button class="btn" id="swingZero">0 / STRAIGHT</button></div><input type="hidden" id="swing" value="0"><p class="small">Fine 1 ms adjustment, ±60 ms on offbeat eighth notes. Dial: drag vertically or use arrow keys.</p></div></section>
+<section class="panel"><div class="head pixel">03 / LOOP TRANSPORT</div><div class="transport-buttons"><button class="btn primary" id="play">▶ PLAY</button><button class="btn stop" id="stop">■ STOP</button><button class="btn alt" id="regen">↻ REGENERATE</button><button class="btn" id="save">⇩ SAVE SONG</button></div><div class="barrail"><div class="barfill" id="barfill"></div></div><div class="readout"><span id="position" class="small pixel">BAR 1 / 4 · BEAT 1</span><span class="badge">16 BEATS</span></div></section>
+</div>
+
+<section class="panel loop-memory-panel" id="loopMemoryPanel">
+<div class="panel-heading"><div class="head pixel">LOOP MEMORY BANK</div><span class="badge" id="memoryCount">0 SAVED</span></div>
+<div class="memory-controls">
+ <div class="memory-name"><label class="label" for="memoryName">LOOP NAME</label><input id="memoryName" type="text" maxlength="72" value="Milk Blue Groove 01" placeholder="Name this loop"></div>
+ <div class="memory-select"><label class="label" for="memorySelect">RECALL A SAVED LOOP</label><select id="memorySelect" aria-label="Saved loops"><option value="">— NO SAVED LOOPS —</option></select></div>
+ <button class="btn primary" type="button" id="rememberLoop">♥ REMEMBER LOOP</button>
+ <button class="btn" type="button" id="recallLoop">↶ RECALL</button>
+ <button class="btn" type="button" id="renameLoop">RENAME</button>
+</div>
+<div class="memory-tools">
+ <label class="memory-check" title="Keep the exact captured groove from the remembered pass on every repeat"><input type="checkbox" id="lockCapturedGroove" checked> LOCK CAPTURED NOTES ON RECALL</label>
+ <button class="btn" type="button" id="deleteLoop">DELETE SELECTED</button>
+ <button class="btn" type="button" id="exportLoops">⇩ EXPORT LOOP BANK</button>
+ <label class="btn" style="display:inline-flex;align-items:center;cursor:pointer">⇧ IMPORT LOOP BANK<input id="importLoops" type="file" accept=".json,application/json" style="display:none"></label>
+</div>
+<div class="memory-info" id="memoryStatus" role="status" aria-live="polite">Remember the loop you hear now. Recall its notes, lyrics, settings and effect types later. A captured groove will repeat identically, even when improvisation was active; unlock it to resume live variation.</div>
+</section>
+<section class="panel console-panel"><div class="panel-heading"><div class="head pixel">04 / MASTER MIXER CONSOLE</div><span class="compact-message">First fader: VOL. Then DRIVE* → COMP* → DELAY* → REV / CHO. 10 INSP per channel below.</span></div><div class="mixer-master-fx" aria-label="Shared NSX-39 hardware effect types">
+<div><label class="label" for="reverbType">MASTER REVERB TYPE</label><select id="reverbType" aria-label="NSX-39 reverb algorithm type"></select></div>
+<div><label class="label" for="chorusType">MASTER CHORUS TYPE</label><select id="chorusType" aria-label="NSX-39 chorus algorithm type"></select></div>
+<div class="fx-type-meta"><p class="fx-type-note">Shared hardware FX: these master settings affect every channel. The individual REV / CHO faders set each channel's send.</p><span class="fx-status" id="fxTypeStatus" role="status" aria-live="polite">Choose an algorithm to send SysEx automatically.</span></div>
+<div class="fx-master-params" id="masterFxParams" aria-label="Hardware master effect parameters">
+<div class="fx-group-label">REVERB · MASTER PARAMETERS</div>
+<div class="master-param-grid" id="reverbParams"></div>
+<div class="fx-group-label">CHORUS · MASTER PARAMETERS</div>
+<div class="master-param-grid" id="chorusParams"></div>
+<div class="fx-group-label">NSX-39 VARIATION ECHO · YOKO (CH 1 ONLY)</div>
+<div class="master-echo-grid"><label class="master-param">HARDWARE ECHO TIME <input id="hwMasterEchoMs" type="number" min="1" max="355" value="270" step="1" aria-label="Yoko NSX hardware echo time in milliseconds"></label><label class="master-param">HARDWARE FEEDBACK <input id="hwMasterEchoFeedback" type="range" min="0" max="90" value="35" step="1" aria-label="Yoko NSX hardware echo feedback"><output id="hwMasterEchoFeedbackValue">35%</output></label></div>
+</div>
+</div><p class="small mixer-swipe-hint">Swipe left or right to view the other mixer channels on a phone.</p><div class="console-scroll" aria-label="Scrollable six-channel mixer"><div class="console-grid" id="tracks"></div></div><div class="console-note">All six strips have individual improvisation percentages. DRV = MIDI harmonic/velocity drive; CMP = note-velocity compression; DLY = per-channel BPM MIDI echoes for instruments, NSX-39 hardware Echo for Yoko; REV / CHO = hardware send levels. *Not true independent audio distortion/compression/delay.</div></section>
+<section class="panel vocal-panel" id="vocalPanel"><div class="panel-heading"><div class="head pixel">YOKO / LYRIC LOOP · CH 1</div><span class="badge">AUTO-ARRANGED · 16 BEATS</span></div>
+<p class="small">Write or paste hiragana/katakana lyrics. SOUND PRINCESS creates an in-key vocal melody and inserts natural phrase rests. The lyrics restart automatically at each loop. Longer lyrics use successive 16-beat loops, then restart at the beginning. English words require kana pronunciation.</p>
+<div class="vocal-editor"><div class="vocal-text"><label class="label" for="vocalLyrics">YOKO LYRICS</label><textarea id="vocalLyrics" rows="3" spellcheck="false" placeholder="よこ、こんにちは。きょうもおんがくをつくろう。">よこ、こんにちは。</textarea></div><div class="vocal-options"><label class="label" for="vocalContour">MELODY SHAPE</label><select id="vocalContour"><option value="gentle" selected>GENTLE STEPS</option><option value="playful">PLAYFUL / LEAPS</option><option value="rising">RISING PHRASES</option></select><button class="btn primary" type="button" id="applyLyrics">♪ ARRANGE + LOOP</button><label class="vocal-lock"><input type="checkbox" id="keepLyrics" checked> KEEP MY LYRICS WHEN CLAUDE COMPOSES</label></div></div>
+<div class="small vocal-status" id="vocalStatus" role="status" aria-live="polite">Write your lyrics, then select ARRANGE + LOOP.</div></section>
+<section class="panel"><div class="panel-heading"><div><div class="head pixel">05 / SELECTED CHANNEL QUICK CONTROLS</div><span class="compact-message">Each mixer strip has its own Improv % plus 10 inspiration controls under the faders. The same Improv % is available in each strip. Use this panel for the selected channel's extra controls and training target.</span></div><span class="badge" id="activeName">DRUMS · MIDI CH 10</span></div><div class="under-rack"><div><label class="label">IMPROVISATION <output id="improvValue">0%</output></label><input type="range" id="improvRange" min="0" max="100" value="0" aria-label="Improvisation"></div><div><label class="label">PAN <output id="panValue">50%</output></label><input type="range" id="panRange" min="0" max="100" value="50" aria-label="Pan"></div><div id="programArea"></div></div><div class="delay-controls" id="delayArea" style="margin-top:10px"></div></section>
+<section class="panel designer-panel" id="trainingPanel"><div class="panel-heading"><div class="head pixel">06 / INSPIRATION DESIGNER + BANK</div><span class="badge" id="presetBankCount">0 saved</span></div>
+<p class="train-help">Choose a channel and a saved inspiration. Load it to edit the musical mathematics, preview its sound at <b>100% strength</b>, and save your changes or a new version. Assign saved presets using each channel's 10 dropdowns above. The Designer is locked while MIDI playback or preview is running.</p>
+<div class="designer-grid">
+  <div><label class="label" for="trainChannel">DESTINATION CHANNEL</label><select id="trainChannel"><option value="voice">Yoko Voice · CH 1</option><option value="drums" selected>Drums · CH 10</option><option value="bass">Bass · CH 2</option><option value="chords">Chords A · CH 3</option><option value="chords2">Chords B · CH 4</option><option value="solo">Solo · CH 5</option></select></div>
+  <div><label class="label" for="trainLoadPreset">LOAD FROM CHANNEL BANK</label><select id="trainLoadPreset"><option value="">— New inspiration —</option></select></div>
+  <div class="designer-buttons"><button class="btn" id="loadPreset">LOAD TO EDIT</button><button class="btn" id="newPreset">NEW</button></div>
+  <div><label class="label" for="presetName">INSPIRATION NAME</label><input id="presetName" type="text" value="Velvet Pocket" maxlength="70" placeholder="Name your musical DNA"></div>
+  <div><label class="label" for="activeSlot">KNOB TO ASSIGN (OPTIONAL)</label><select id="activeSlot" aria-label="Knob slot"><option value="1">KNOB 01</option><option value="2">KNOB 02</option><option value="3">KNOB 03</option><option value="4">KNOB 04</option><option value="5">KNOB 05</option><option value="6">KNOB 06</option><option value="7">KNOB 07</option><option value="8">KNOB 08</option><option value="9">KNOB 09</option><option value="10">KNOB 10</option></select></div>
+  <div class="wide"><label class="label" for="trainPrompt">FEEL / CLAUDE TRAINING PROMPT</label><textarea id="trainPrompt" placeholder="Make the snares slightly late, hats loose, kick tight, and ghost notes subtle.">Make the snares slightly late. Let the hi-hats be loose, but keep the kick relatively tight. Add occasional soft ghost notes.</textarea></div>
+</div>
+<div class="train-parameters-title"><span class="label">MUSICAL DNA · MANUAL PARAMETER EDITING</span><span class="small" id="loadedPresetStatus">New unsaved inspiration</span></div>
+<div id="parameterGrid" class="parameter-grid" aria-label="Editable musical DNA parameters"></div>
+<div class="designer-actions"><button class="btn primary" id="train">✦ REFINE WITH CLAUDE</button><button class="btn" id="savePreset">SAVE / OVERWRITE</button><button class="btn" id="saveAsPreset">SAVE AS NEW</button><button class="btn" id="assignPreset">ASSIGN TO KNOB</button></div>
+<div class="preview-row"><button class="btn primary" id="previewPreset">▶ PREVIEW 100%</button><button class="btn stop" id="stopPreview" disabled>■ STOP PREVIEW</button><span class="small" id="previewStatus">Preview plays only the selected channel's draft at 100%, with other channels muted temporarily. Connect Pocket Miku first.</span></div>
+<div class="trainer-actions"><button class="btn" id="saveBank">SAVE BANK</button><button class="btn" id="exportBank">EXPORT BANK JSON</button><label class="btn bank-import" style="display:inline-flex;align-items:center;cursor:pointer">IMPORT BANK<input type="file" id="importBank" accept="application/json,.json" style="display:none"></label></div>
+<div class="small" id="bankStatus" aria-live="polite">Create or load a preset while stopped. Edit its math, then preview before saving.</div>
+</section>
+<section class="panel"><details class="details-panel" open><summary>07 / CLAUDE COMPOSER · SONG GENERATION</summary><div class="details-body"><div class="composer-grid"><div class="wide"><label class="label">SONG DESCRIPTION</label><textarea id="prompt">A warm, spacious four-bar groove with a relaxed bassline, elegant chords, and playful jazz solo. Keep the musical parts responding to each other.</textarea></div><button class="btn primary" id="compose">✦ COMPOSE</button></div><div class="trainer-actions"><button class="btn" id="demo">LOCAL GENERATOR</button></div><p class="small" id="composeStatus">Claude can generate the notes and arrangement; SOUND PRINCESS handles groove, MIDI timing and knob changes locally.</p></div></details></section>
+<section class="panel"><details class="details-panel"><summary>08 / DIAGNOSTICS + HARDWARE NOTES</summary><div class="details-body"><div id="log" class="log">Ready.</div><p class="small">The NSX-39 has shared onboard effect algorithms, selected from the master console using Yamaha XG SysEx (02 01 00 and 02 01 20), with separate MIDI channel sends. CC91 reverb, CC93 chorus, CC94 variation send. Distortion and compression here are MIDI-level approximations, NOT independent audio processors. Yoko uses the Yamaha XG Variation Echo hardware algorithm (07 00) and sends CC94 on CH 1; instrumental MIDI echo rates are independent of master BPM. XG Echo delay time is limited to 355 ms. Hardware implementation may vary by NSX-39 mode. MIDI SysEx permission is required for type changes; support varies between NSX-39 operating modes. This is an experimental local Web MIDI app: verify device behavior and avoid MIDI loops.</p></div></details></section>
+<section class="panel claude-api-panel" aria-label="Claude API shared connection">
+  <div class="panel-heading"><div class="head pixel">09 / CLAUDE API · SHARED CONNECTION</div><span class="badge" id="apiStatus" role="status" aria-live="polite">KEY NOT ENTERED</span></div>
+  <div class="claude-api-grid">
+    <div class="claude-api-key"><label class="label" for="apiKey">API KEY · SESSION ONLY</label><input type="password" id="apiKey" placeholder="sk-ant-…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-describedby="apiNote"></div>
+    <div><label class="label" for="model">MODEL FOR TRAINING + COMPOSITION</label><select id="model"><option value="claude-haiku-5-5">Claude Haiku 5.5</option><option value="claude-sonnet-5-5">Claude Sonnet 5.5</option></select></div>
+    <div class="api-buttons"><button type="button" class="btn" id="toggleApiKey" aria-label="Show API key">SHOW KEY</button><button type="button" class="btn" id="clearApiKey">CLEAR KEY</button></div>
+  </div>
+  <p class="small api-note" id="apiNote">One key is used by both <strong>TRAIN + SAVE DNA</strong> and <strong>COMPOSE</strong>. It stays in this page until you close or reload it; the app doesn't save it to its local preset bank. Calls are sent directly from your browser to Anthropic, so use this only on a trusted local device. A filled-in key has not been verified until you make a request.</p>
+</section>
+<footer class="diag-footer">SOUND PRINCESS v0.3.2 • Single-page six-channel console • Octave and independent delay controls • 10 inspiration slots directly under each channel • GM Program Change for Bass / Chords / Solo • Local preset banks with export/import • Optional online pixel fonts (offline fallback included). Claude API key serves both composer and training; do not publish it. For iPhone, swipe horizontally through the six-channel console; everything stays on the same page.</footer>
+</main><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),rand=(a,b)=>a+Math.random()*(b-a),pick=a=>a[Math.floor(Math.random()*a.length)];
+const log=(s)=>{$('log').textContent=new Date().toLocaleTimeString()+' '+s+'\n'+$('log').textContent.slice(0,3000)};
+const apiField=$('apiKey');
+const updateApiStatus=()=>{$('apiStatus').textContent=apiField.value.trim()?'KEY ENTERED · NOT TESTED':'KEY NOT ENTERED';};
+apiField.addEventListener('input',updateApiStatus);
+$('toggleApiKey').addEventListener('click',()=>{const show=apiField.type==='password';apiField.type=show?'text':'password';$('toggleApiKey').textContent=show?'HIDE KEY':'SHOW KEY';$('toggleApiKey').setAttribute('aria-label',show?'Hide API key':'Show API key');});
+$('clearApiKey').addEventListener('click',()=>{apiField.value='';apiField.type='password';$('toggleApiKey').textContent='SHOW KEY';$('toggleApiKey').setAttribute('aria-label','Show API key');updateApiStatus();apiField.focus();});
+updateApiStatus();
+const KEYNOTES=['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'];
+const SCALES={Major:[0,2,4,5,7,9,11],Minor:[0,2,3,5,7,8,10],Dorian:[0,2,3,5,7,9,10],Mixolydian:[0,2,4,5,7,9,10],'Minor pentatonic':[0,3,5,7,10],Blues:[0,3,5,6,7,10],'Harmonic minor':[0,2,3,5,7,8,11]};
+KEYNOTES.forEach((k,i)=>$('key').add(new Option(k,i)));Object.keys(SCALES).forEach(k=>$('scale').add(new Option(k,k)));$('scale').value='Minor';$('key').value='0';
+const GM=['Acoustic Grand Piano','Bright Piano','Electric Grand Piano','Honky-Tonk Piano','Electric Piano 1','Electric Piano 2','Harpsichord','Clavinet','Celesta','Glockenspiel','Music Box','Vibraphone','Marimba','Xylophone','Tubular Bells','Dulcimer','Drawbar Organ','Percussive Organ','Rock Organ','Church Organ','Reed Organ','Accordion','Harmonica','Tango Accordion','Acoustic Nylon Guitar','Acoustic Steel Guitar','Electric Jazz Guitar','Electric Clean Guitar','Electric Muted Guitar','Overdriven Guitar','Distortion Guitar','Guitar Harmonics','Acoustic Bass','Electric Finger Bass','Electric Pick Bass','Fretless Bass','Slap Bass 1','Slap Bass 2','Synth Bass 1','Synth Bass 2','Violin','Viola','Cello','Contrabass','Tremolo Strings','Pizzicato Strings','Orchestral Harp','Timpani','String Ensemble 1','String Ensemble 2','Synth Strings 1','Synth Strings 2','Choir Aahs','Voice Oohs','Synth Choir','Orchestra Hit','Trumpet','Trombone','Tuba','Muted Trumpet','French Horn','Brass Section','Synth Brass 1','Synth Brass 2','Soprano Sax','Alto Sax','Tenor Sax','Baritone Sax','Oboe','English Horn','Bassoon','Clarinet','Piccolo','Flute','Recorder','Pan Flute','Blown Bottle','Shakuhachi','Whistle','Ocarina','Lead 1 Square','Lead 2 Sawtooth','Lead 3 Calliope','Lead 4 Chiff','Lead 5 Charang','Lead 6 Voice','Lead 7 Fifths','Lead 8 Bass + Lead','Pad 1 New Age','Pad 2 Warm','Pad 3 Polysynth','Pad 4 Choir','Pad 5 Bowed','Pad 6 Metallic','Pad 7 Halo','Pad 8 Sweep','FX 1 Rain','FX 2 Soundtrack','FX 3 Crystal','FX 4 Atmosphere','FX 5 Brightness','FX 6 Goblins','FX 7 Echoes','FX 8 Sci-Fi','Sitar','Banjo','Shamisen','Koto','Kalimba','Bagpipe','Fiddle','Shanai','Tinkle Bell','Agogo','Steel Drums','Woodblock','Taiko Drum','Melodic Tom','Synth Drum','Reverse Cymbal','Guitar Fret Noise','Breath Noise','Seashore','Bird Tweet','Telephone Ring','Helicopter','Applause','Gunshot'];
+const TRACKS=[
+ {id:'voice',name:'YOKO VOICE',ch:1,c:'#e9a3c9',program:null,mute:false,solo:false,improv:0,vol:106,pan:64,reverb:53,chorus:55,cutoff:90,resonance:64,attack:64,release:68,gate:78,echo:'off',echoMix:35,echoRepeats:2,echoFeedback:60,octave:0,echoBpm:110,hwEchoMs:270,hwEchoFeedback:35,inspo:{}},
+ {id:'drums',name:'DRUMS',ch:10,c:'#e2bc78',program:null,mute:false,solo:false,improv:0,vol:96,pan:64,reverb:16,chorus:0,cutoff:100,resonance:64,attack:64,release:64,gate:70,echo:'off',echoMix:35,echoRepeats:2,echoFeedback:55,octave:0,echoBpm:110,inspo:{'Aphex Twin':0,'J Dilla':0,'Idris Muhammad':0,'Masters at Work':0,'Four Tet':0}},
+ {id:'bass',name:'BASS',ch:2,c:'#8ccac2',program:34,mute:false,solo:false,improv:0,vol:104,pan:64,reverb:12,chorus:0,cutoff:98,resonance:64,attack:64,release:64,gate:74,echo:'off',echoMix:35,echoRepeats:2,echoFeedback:55,octave:0,echoBpm:110,inspo:{'Bootsy Collins':0}},
+ {id:'chords',name:'CHORDS A',ch:3,c:'#98b3eb',program:5,mute:false,solo:false,improv:0,vol:78,pan:64,reverb:62,chorus:30,cutoff:92,resonance:64,attack:64,release:70,gate:78,echo:'off',echoMix:35,echoRepeats:2,echoFeedback:55,octave:0,echoBpm:110,inspo:{'House Stabs':0,'Jazz':0}},
+ {id:'chords2',name:'CHORDS B',ch:4,c:'#83c4d8',program:89,mute:false,solo:false,improv:0,vol:68,pan:64,reverb:56,chorus:24,cutoff:92,resonance:64,attack:64,release:70,gate:82,echo:'off',echoMix:35,echoRepeats:2,echoFeedback:55,octave:0,echoBpm:110,inspo:{'House Stabs':0,'Jazz':0}},
+ {id:'solo',name:'SOLO',ch:5,c:'#dca9df',program:27,mute:false,solo:false,improv:0,vol:85,pan:64,reverb:33,chorus:15,cutoff:98,resonance:64,attack:64,release:64,gate:80,echo:'off',echoMix:35,echoRepeats:2,echoFeedback:55,octave:0,echoBpm:110,inspo:{'Grant Green':0,'Thelonious Monk':0}}
+];
+const FACTORY={
+ voice:[],drums:['Aphex Twin','J Dilla','Idris Muhammad','Masters at Work','Four Tet'],
+ bass:['Bootsy Collins'],chords:['House Stabs','Jazz'],chords2:['House Stabs','Jazz'],solo:['Grant Green','Thelonious Monk']};
+const PARAMS=['timing','swing','density','ghost','syncopation','accent','articulation','harmonic'];
+const BUILTIN={
+ 'Aphex Twin':{timing:15,swing:0,density:35,ghost:20,syncopation:65,accent:25,articulation:-25,harmonic:0},
+ 'J Dilla':{timing:38,swing:47,density:-12,ghost:32,syncopation:28,accent:35,articulation:-9,harmonic:0},
+ 'Idris Muhammad':{timing:11,swing:13,density:9,ghost:43,syncopation:34,accent:30,articulation:7,harmonic:0},
+ 'Masters at Work':{timing:0,swing:4,density:22,ghost:12,syncopation:40,accent:42,articulation:-17,harmonic:0},
+ 'Four Tet':{timing:13,swing:15,density:10,ghost:28,syncopation:28,accent:10,articulation:-32,harmonic:0},
+ 'Bootsy Collins':{timing:9,swing:14,density:18,ghost:25,syncopation:50,accent:38,articulation:-22,harmonic:4},
+ 'House Stabs':{timing:-3,swing:0,density:-12,ghost:0,syncopation:48,accent:45,articulation:-45,harmonic:3},
+ 'Jazz':{timing:8,swing:29,density:10,ghost:6,syncopation:28,accent:19,articulation:14,harmonic:35},
+ 'Grant Green':{timing:12,swing:23,density:-20,ghost:8,syncopation:34,accent:27,articulation:18,harmonic:16},
+ 'Thelonious Monk':{timing:12,swing:16,density:-14,ghost:6,syncopation:53,accent:60,articulation:-15,harmonic:55}
+};
+const storageKey='sound_princess_v020_bank';
+const bank={};
+let activeId='drums',activeSlot=0;
+let designerTarget='drums',editingId='',draftParams={},trainerBusy=false,previewSession=null;
+const makePreset=(name,params,description='',factory=false)=>({id:factory?'factory_'+name:'custom_'+Date.now()+'_'+Math.floor(Math.random()*1e6),name,params:{...params},description,factory});
+for(const t of TRACKS){
+ t.drive=0;t.comp=0;t.delay=0;if(t.id!=='voice')t.echo='1/8';
+ bank[t.id]=(FACTORY[t.id]||[]).map(n=>makePreset(n,BUILTIN[n],'Factory starting point',true));
+ t.slots=Array.from({length:10},(_,i)=>({id:bank[t.id][i]?.id||'',level:0}));
+}
+function restoreBanks(){try{const raw=localStorage.getItem(storageKey);if(!raw)return;const data=JSON.parse(raw);for(const t of TRACKS){if(Array.isArray(data.bank?.[t.id])){for(const b of data.bank[t.id])if(b&&typeof b.name==='string'&&typeof b.id==='string'&&b.params&&typeof b.params==='object'){const stored={id:b.id,name:b.name.slice(0,70),description:String(b.description||'').slice(0,500),params:safeParams(b.params),factory:false};const current=bank[t.id].find(x=>x.id===b.id);if(current)Object.assign(current,stored);else bank[t.id].push(stored);}}
+ if(Array.isArray(data.slots?.[t.id]))t.slots=data.slots[t.id].slice(0,10).map(s=>({id:bank[t.id].some(p=>p.id===s.id)?s.id:'',level:clamp(Number(s.level)||0,0,100)}));
+ while(t.slots.length<10)t.slots.push({id:'',level:0});
+ for(const p of ['drive','comp','delay','vol','reverb','chorus','pan','improv','program','octave','echoBpm','echoRepeats','echoFeedback','hwEchoMs','hwEchoFeedback']){const value=data.mix?.[t.id]?.[p];if(value===undefined||value===null||!Number.isFinite(Number(value)))continue;const limits=({program:[1,128],octave:[-3,3],echoBpm:[40,300],echoRepeats:[1,16],echoFeedback:[0,100],hwEchoMs:[1,355],hwEchoFeedback:[0,90]})[p]||(['drive','comp','delay','improv'].includes(p)?[0,100]:[0,127]);t[p]=clamp(Number(value),...limits)}
+ if(['1/16','1/8','Dotted 1/8','1/4','1/2','off'].includes(data.mix?.[t.id]?.echo))t.echo=data.mix[t.id].echo;
+ }}catch(err){console.warn('Bank restore unavailable',err)}}
+function safeParams(input){return Object.fromEntries(PARAMS.map(k=>[k,clamp(Number(input?.[k])||0,-100,100)]));}
+function saveBanks(){if(previewSession)return;try{localStorage.setItem(storageKey,JSON.stringify({version:'0.3.2',bank,slots:Object.fromEntries(TRACKS.map(t=>[t.id,t.slots])),mix:Object.fromEntries(TRACKS.map(t=>[t.id,{drive:t.drive,comp:t.comp,delay:t.delay,vol:t.vol,reverb:t.reverb,chorus:t.chorus,pan:t.pan,improv:t.improv,program:t.program,octave:t.octave,echo:t.echo,echoBpm:t.echoBpm,echoRepeats:t.echoRepeats,echoFeedback:t.echoFeedback,hwEchoMs:t.hwEchoMs,hwEchoFeedback:t.hwEchoFeedback}]))}));$('bankStatus').textContent='Bank saved locally. Export a backup for safety.'}catch(err){$('bankStatus').textContent='Local saving unavailable; use EXPORT BANK for a reliable backup.';}}
+restoreBanks();
+const VOCAL_STORE='sound_princess_yoko_lyrics_v1';
+function storedVocal(){try{return JSON.parse(localStorage.getItem(VOCAL_STORE)||'null')}catch{return null}}
+const vocalPrefs=storedVocal();
+const state={midi:null,out:null,playing:false,loopStart:0,scheduledUntil:0,bpm:110,cycle:-1,cache:new Map(),seedCache:new Map(),base:{voice:[],drums:[],bass:[],chords:[],chords2:[],solo:[]},progression:[0,5,3,4],lyrics:typeof vocalPrefs?.lyrics==='string'?vocalPrefs.lyrics:'よこ、こんにちは。',vocalSections:[],vocalStats:null,pendingVocal:null,voicePitch:65,composerSource:'local',revision:0,fixedParts:null,useFixed:false,lastHeard:null};
+const getTrack=id=>TRACKS.find(t=>t.id===id),note=(beat,n,dur=.24,vel=95)=>({beat:+beat,note:Math.round(n),dur:+dur,vel:Math.round(vel)}),harmony=()=>SCALES[$('scale').value],root=()=>+$('key').value;
+function degree(d,oct=0){const s=harmony();return 12*oct+root()+s[((d%s.length)+s.length)%s.length]+12*Math.floor(d/s.length)}
+function safeNote(n){return clamp(Math.round(n),0,127)}
+function inScale(n,baseOct){const s=harmony(),base=12*baseOct+root(),pc=(((n-base)%12)+12)%12;let val=s.reduce((b,x)=>Math.abs(x-pc)<Math.abs(b-pc)?x:b,s[0]);return clamp(base+12*Math.round((n-base-val)/12)+val,20,105)}
+function weight(t,n){return clamp(t.slots.reduce((v,s)=>v+(bank[t.id].find(p=>p.id===s.id)?.name===n?s.level/100:0),0),0,1)}
+function dna(t){const result=Object.fromEntries(PARAMS.map(k=>[k,0]));for(const s of t.slots){if(!s.level)continue;const p=bank[t.id].find(x=>x.id===s.id);if(!p)continue;for(const key of PARAMS)result[key]+=(Number(p.params[key])||0)*s.level/100;}for(const key of PARAMS)result[key]=clamp(result[key],-100,100);return result;}
+// Deterministic pseudo-randomness for each event/loop keeps repeated passes stable at 0% improvisation.
+function noise(seed){let x=(Math.floor(seed)*1664525+1013904223)>>>0;x^=x>>>16;x=Math.imul(x,2246822507)>>>0;x^=x>>>13;return (x>>>0)/4294967296;}
+function applyDNA(t,source,cycle){const p=dna(t),active=Object.values(p).some(v=>Math.abs(v)>.001);if(!active)return source;
+ if(t.id==='voice'){return source.map((e,i)=>({...e,vel:clamp(Math.round(e.vel+(i%2?p.accent:-p.accent)*.16),45,127),dur:clamp(e.dur*(1+p.articulation/230),.09,1.5)}));}
+const output=[];const phase=t.improv>0?cycle:0;
+ for(let i=0;i<source.length;i++){const e={...source[i]};const n=noise(i*7919+phase*43+t.ch*317);const isOff=Math.floor(e.beat*2)%2===1;const isDrumSnare=t.id==='drums'&&[38,40].includes(e.note);const shift=(isDrumSnare?1:.32)*p.timing/100*.13;
+ e.beat=bounce(e.beat+shift+((isOff?p.swing/100*.15:0)));
+ if(p.syncopation>0&&n<p.syncopation/100*.24)e.beat=bounce(e.beat+(noise(i*101+phase*13+t.ch)>.5?.25:-.25));
+ if(p.density<0&&n<(-p.density/100)*.42)continue;
+ if(p.accent!==0)e.vel=clamp(Math.round(e.vel+(isOff?-1:1)*p.accent*.19),1,127);
+ e.dur=clamp(e.dur*(1+p.articulation/100*.46),.045,4);
+ if(p.harmonic>0&&t.id!=='drums'&&t.id!=='voice'&&noise(i*123+phase*77+t.ch)<p.harmonic/100*.15)e.note=inScale(e.note+pick([2,3,4,-2]),Math.max(1,Math.floor(e.note/12)));
+ output.push(e);
+ if(p.ghost>0&&t.id==='drums'&&noise(i*719+phase*97+t.ch)<p.ghost/100*.10)output.push({...e,beat:bounce(e.beat+.25),vel:Math.max(15,Math.round(e.vel*.35)),dur:.07});
+ if(p.density>0&&noise(i*337+phase*37+t.ch)<p.density/100*.18){output.push({...e,beat:bounce(e.beat+.5),vel:Math.round(e.vel*.67),dur:Math.min(e.dur,.22)});}
+ }
+ return output;
+}
+function bounce(beat){return ((beat%16)+16)%16}
+function drums(){const t=getTrack('drums'),d=weight(t,'J Dilla'),ap=weight(t,'Aphex Twin'),id=weight(t,'Idris Muhammad'),ma=weight(t,'Masters at Work'),ft=weight(t,'Four Tet');let out=[];for(let bar=0;bar<4;bar++){const b=bar*4;for(let beat=0;beat<4;beat++){
+  const kick=beat===0||beat===2||Math.random()<.34*ma+(beat===3?.12*id:0);if(kick)out.push(note(b+beat,36,.14,105));
+  if(beat===1||beat===3)out.push(note(b+beat+(Math.random()<d*.45?.085:0),38,.13,100-Math.round(rand(0,d*18))));
+  if(Math.random()<id*.33+.13*ap && beat!==1&&beat!==3)out.push(note(b+beat+.75,38,.11,55));
+ }
+ for(let h=0;h<8;h++){const b0=b+h*.5;const drop=Math.random()<ft*.28+ap*.12;if(!drop)out.push(note(b0+(h%2===1?.055*d:0),42,.11,55+Math.round(rand(0,22))));}
+ for(let h=0;h<16;h++){if(Math.random()<ap*.24+ma*.22+ft*.18){out.push(note(b+h*.25+(Math.random()<ft*.24?.045:0),pick([42,44,46,54]),.07,Math.round(rand(25,75))))}}
+ if(Math.random()<id*.65+ma*.37)out.push(note(b+3.5,46,.12,68));
+ if(Math.random()<ft*.65)out.push(note(b+pick([.75,1.75,2.75,3.25]),pick([54,56,60]),.11,58));
+ if(Math.random()<ap*.57)out.push(note(b+3.75,pick([37,38,39,42]),.09,78));
+ }return out;}
+function bass(){const t=getTrack('bass'),f=weight(t,'Bootsy Collins');let out=[];for(let bar=0;bar<4;bar++){let d=state.progression[bar];const r=degree(d,3),fifth=degree(d+4,3),third=degree(d+2,3);let b=bar*4;
+ for(let beat=0;beat<4;beat++){if(beat===0||Math.random()<.46+.19*f){const pitch=(beat===2&&Math.random()<.34)?fifth:r;out.push(note(b+beat, pitch, .4+rand(0,.27), Math.round(rand(86,107))));}
+ if(Math.random()<f*.52)out.push(note(b+beat+.5,Math.random()<.4?third:pick([r,degree(d+6,3),fifth]),.19,Math.round(rand(63,101))));
+ if(Math.random()<f*.36)out.push(note(b+beat+.75,pick([r,degree(d+1,3),fifth]),.13,Math.round(rand(45,81))));
+ }
+ }return out;}
+function chords(){const t=getTrack('chords'),house=weight(t,'House Stabs'),jazz=weight(t,'Jazz');let out=[];for(let bar=0;bar<4;bar++){const d=state.progression[bar],b=bar*4;const tones=[degree(d,4),degree(d+2,4),degree(d+4,4),...(Math.random()<jazz*.8?[degree(d+6,4)]:[])];const strikes=house>0.3?[0,1.5,2.5,3.5]:[0,2];if(jazz>.4&&Math.random()<.5)strikes.push(3);for(const p of strikes){if(Math.random()<.1+jazz*.14)continue;let at=b+p+(house>0&&Math.random()<.22?rand(-.04,.04):0);for(const tn of tones)out.push(note(at,tn,house>.4?.23:1.12,Math.round(65+rand(0,18))));}}return out;}
+function chords2(){const t=getTrack('chords2'),house=weight(t,'House Stabs'),jazz=weight(t,'Jazz'),out=[];
+ for(let bar=0;bar<4;bar++){const d=state.progression[bar],b=bar*4,tones=[degree(d+2,5),degree(d+4,5),degree(d+6,5)];
+  const hits=house>.45?[.5,1.5,2.5,3.5]:[.5,2.5];for(const offset of hits){if(Math.random()<.1+jazz*.08)continue;for(const tone of tones)out.push(note(b+offset,tone,house>.45?.26:1.25,Math.round(rand(49,75))));}
+ }return out;}
+function solo(){const t=getTrack('solo'),green=weight(t,'Grant Green'),monk=weight(t,'Thelonious Monk');let out=[],current=degree(2,5);for(let bar=0;bar<4;bar++){const d=state.progression[bar],n=1+Math.round(2+green*2+monk*3),step=4/(n+1);for(let k=0;k<n;k++){if(Math.random()<.22-green*.1+monk*.08)continue;let at=bar*4+k*step+(monk?rand(-.19,.19)*monk:0),v=clamp(75+rand(-16,24),45,120);const leaps=monk*Math.random(),candidate=leaps>.55?degree(d+pick([0,4,6,9,10]),5):degree(d+pick([0,1,2,3,4,5,6]),5);current=clamp(candidate,60,92);out.push(note(Math.max(0,at),current,clamp(step*(.5+green*.25),.12,.9),v));}}
+ return out;}
+function voice(){const program=makeVocalProgram(state.lyrics,$('vocalContour')?.value||'gentle');state.vocalSections=program.sections;state.vocalStats=program.stats;refreshVocalStatus();return program.sections[0]?.notes||[];}
+function freshProgression(){const pools=[[0,5,3,4],[0,3,4,0],[0,4,5,3],[0,5,4,3],[0,2,4,0],[0,3,5,4]];const picked=pick(pools),count=clamp(+$('chordCount').value||4,1,4);state.progression=Array.from({length:4},(_,i)=>picked[i%count]);}
+function redrawSteps(){for(const t of TRACKS){const div=$('steps-'+t.id);if(!div)continue;const slots=Array(64).fill(false);for(const e of state.base[t.id]||[]){slots[Math.floor(clamp(e.beat,0,15.99)*4)]=true;}div.innerHTML=slots.map(v=>`<span class="step${v?' note':''}"></span>`).join('');}}
+function invalidate(){state.revision++;state.cache.clear();state.seedCache.clear();redrawSteps();}
+function generate(which='all'){clearFixedGroove();if(which==='all'){freshProgression();state.base.voice=voice();state.base.drums=drums();state.base.bass=bass();state.base.chords=chords();state.base.chords2=chords2();state.base.solo=solo();state.composerSource='local';}else{state.base[which]=({voice,drums,bass,chords,chords2,solo})[which]();}invalidate();log('Generated '+which+' • key='+KEYNOTES[root()]+' '+$('scale').value);}
+function hydrateEvents(ev){return (Array.isArray(ev)?ev:[]).filter(x=>x&&Number.isFinite(+x.beat)&&Number.isFinite(+x.note)&&Number.isFinite(+x.dur)&&Number.isFinite(+x.vel)).map(x=>({beat:clamp(+x.beat,0,15.98),note:safeNote(+x.note),dur:clamp(+x.dur,.04,4),vel:clamp(Math.round(+x.vel),1,127)})).slice(0,250)}
+function improvised(t,cycle,sourceOverride){const src=sourceOverride||state.base[t.id]||[],p=t.improv/100;
+ if(t.id==='voice'){return src.map((e,i)=>{const x={...e};if(cycle>0&&p>0){if(noise(i*311+cycle*71)<p*.26)x.note=inScale(x.note+pick([-2,2,3,-3]),5);if(noise(i*607+cycle*47)<p*.22)x.vel=clamp(x.vel+Math.round(rand(-14,14)),55,110);}return x;});} if(p===0||cycle===0)return src;let notes=src.map(e=>({...e}));for(const e of notes){if(Math.random()<p*.24)e.beat=clamp(e.beat+pick([-.25,-.125,.125,.25]),0,15.98);if(Math.random()<p*.22)e.vel=clamp(e.vel+Math.round(rand(-24,24)),25,127);if(t.id!=='drums'&&Math.random()<p*.20)e.note=inScale(e.note+pick([-3,-2,2,3,5]),Math.max(1,Math.floor(e.note/12)));if(Math.random()<p*.08)e.vel=0;}
+ if(Math.random()<p*.95&&notes.length>0){const e={...pick(notes)};e.beat=clamp(e.beat+pick([.25,.5,.75]),0,15.98);e.vel=Math.round(e.vel*.6);notes.push(e);}
+ return notes.filter(e=>e.vel>0);}
+// The loop stays at master BPM, while each MIDI-echo track measures repeats in its own BPM.
+// Cache the original notes of each cycle so tails crossing the barline are scheduled only once,
+// rather than wrapping to the beginning of the *same* cycle (which used to create early echoes).
+const echoUnits={'1/16':.25,'1/8':.5,'Dotted 1/8':.75,'1/4':1,'1/2':2};
+function sourceEventsForCycle(cycle){if(state.seedCache.has(cycle))return state.seedCache.get(cycle);const events=[];
+ for(const t of TRACKS){let prepared;
+  if(state.useFixed&&state.fixedParts){prepared=t.id==='voice'?(state.fixedParts.voiceSections?.[cycle%Math.max(1,state.fixedParts.voiceSections?.length||1)]||[]):(state.fixedParts.parts?.[t.id]||[]);}
+  else {const src=t.id==='voice'?(state.vocalSections[cycle%Math.max(1,state.vocalSections.length)]?.notes||[]):state.base[t.id];prepared=applyDNA(t,improvised(t,cycle,src),cycle);}
+  for(const e of prepared)events.push({...e,beat:bounce(e.beat),t});
+ }state.seedCache.set(cycle,events);if(state.seedCache.size>32)state.seedCache.delete(cycle-30);return events;}
+function scheduleEventsForCycle(cycle){if(state.cache.has(cycle))return state.cache.get(cycle);const events=sourceEventsForCycle(cycle).map(e=>({...e}));
+ // Long echo tails can travel across many full 16-beat cycles (up to 16 repeats).
+ // Compute the lookback from the slowest echo, respecting each channel's echo BPM.
+ const lookback=Math.max(0,...TRACKS.filter(t=>t.id!=='voice'&&t.delay>0&&t.echo!=='off').map(t=>Math.ceil((t.echoRepeats*(echoUnits[t.echo]||0)*state.bpm/clamp(t.echoBpm||state.bpm,40,300))/16)));
+ for(let prev=Math.max(0,cycle-lookback);prev<=cycle;prev++){ 
+  for(const e of sourceEventsForCycle(prev)){
+   const t=e.t;if(t.id==='voice'||t.delay<=0||t.echo==='off')continue;
+   const division=echoUnits[t.echo];if(!division)continue;
+   const echoBeats=division*state.bpm/clamp(t.echoBpm||state.bpm,40,300);
+   for(let n=1;n<=t.echoRepeats;n++){
+    const localBeat=e.beat+n*echoBeats+(prev-cycle)*16;
+    if(localBeat<0||localBeat>=16)continue;
+    const vel=Math.round(e.vel*(t.delay/100)*Math.pow(t.echoFeedback/100,n-1));if(vel<5)break;
+    events.push({...e,beat:localBeat,vel,dur:Math.min(e.dur,echoBeats*.75)});
+   }
+  }
+ }
+ events.sort((a,b)=>a.beat-b.beat);state.cache.set(cycle,events);if(state.cache.size>8)state.cache.delete(cycle-6);return events;}
+
+function send(bytes,timestamp){const o=state.out;if(!o||o.state!=='connected')return;try{if(timestamp!==undefined)o.send(bytes,timestamp);else o.send(bytes)}catch(e){log('MIDI send error: '+e.message);}}
+function status(txt,ok){$('midistatus').textContent=txt;$('led').classList.toggle('on',!!ok)}
+// Effect algorithms are shared by the NSX-1; per-track CC91/CC93 send amounts remain independent.
+// Each entry is [label, XG type MSB, XG type LSB]. A conservative set of established XG types.
+const REVERB_TYPES=[
+ ['No effect',0x00,0x00],['Hall 1',0x01,0x00],['Hall 2',0x01,0x01],
+ ['Room 1',0x02,0x00],['Room 2',0x02,0x01],['Room 3',0x02,0x02],
+ ['Stage 1',0x03,0x00],['Stage 2',0x03,0x01],['Plate',0x04,0x00],
+ ['White Room',0x10,0x00],['Tunnel',0x11,0x00],['Canyon',0x12,0x00],['Basement',0x13,0x00]
+];
+const CHORUS_TYPES=[
+ ['No effect',0x00,0x00],['Chorus 1',0x41,0x00],['Chorus 2',0x41,0x01],
+ ['Chorus 3',0x41,0x02],['Chorus 4',0x41,0x08],
+ ['Celeste 1',0x42,0x00],['Celeste 2',0x42,0x01],['Celeste 3',0x42,0x02],['Celeste 4',0x42,0x08],
+ ['Flanger 1',0x43,0x00],['Flanger 2',0x43,0x01],['Flanger 3',0x43,0x08],
+ ['Symphonic',0x44,0x00],['Phaser 1',0x48,0x00],['Ensemble Detune',0x57,0x00]
+];
+const FX_TYPE_STORAGE='sound_princess_hw_fx_types_v1';
+const fxTypeChoices={reverb:REVERB_TYPES,chorus:CHORUS_TYPES};
+function fillEffectMenu(id,types){
+ const sel=$(id);sel.add(new Option('KEEP DEVICE SETTING','keep'));
+ for(const [name,msb,lsb] of types)sel.add(new Option(name,msb.toString(16).padStart(2,'0')+'-'+lsb.toString(16).padStart(2,'0')));
+}
+fillEffectMenu('reverbType',REVERB_TYPES);fillEffectMenu('chorusType',CHORUS_TYPES);
+try{const saved=JSON.parse(localStorage.getItem(FX_TYPE_STORAGE)||'{}');
+ for(const [kind,id] of [['reverb','reverbType'],['chorus','chorusType']]){
+  if([...$(id).options].some(o=>o.value===saved[kind]))$(id).value=saved[kind];
+ }}catch(err){log('Hardware effect setting restore unavailable: '+err.message)}
+// XG effect parameters are shared across channels, not independent per-track DSP.
+// XG raw units are used deliberately: the conversion to seconds/Hz depends on effect type.
+const MASTER_FX_DEFS={
+ reverb:[['time','REVERB TIME',0x02,0,69,18],['initialDelay','INITIAL DELAY',0x04,0,63,8],['hpf','HIGH PASS',0x05,0,52,13],['lpf','LOW PASS',0x06,34,60,49],['return','RETURN',0x0C,0,127,64]],
+ chorus:[['rate','LFO RATE',0x22,0,127,6],['depth','LFO DEPTH',0x23,0,127,54],['feedback','FEEDBACK',0x24,1,127,77],['delayOffset','DELAY OFFSET',0x25,0,127,106],['return','RETURN',0x2C,0,127,64],['toReverb','TO REVERB',0x2E,0,127,40]]
+};
+const masterFx=Object.fromEntries(Object.entries(MASTER_FX_DEFS).map(([kind,defs])=>[kind,Object.fromEntries(defs.map(([key,name,addr,min,max,def])=>[key,def]))]));
+try{const old=JSON.parse(localStorage.getItem(FX_TYPE_STORAGE)||'{}');for(const [kind,defs] of Object.entries(MASTER_FX_DEFS)){for(const [key,label,addr,min,max] of defs){if(Number.isFinite(Number(old.params?.[kind]?.[key])))masterFx[kind][key]=clamp(Math.round(Number(old.params[kind][key])),min,max);}}}catch{}
+for(const [kind,defs] of Object.entries(MASTER_FX_DEFS)){$(kind+'Params').innerHTML=defs.map(([key,label,addr,min,max])=>`<label class="master-param">${label}<input type="range" min="${min}" max="${max}" step="1" value="${masterFx[kind][key]}" data-master-fx="${kind}" data-master-key="${key}" aria-label="NSX-39 ${kind} ${label}"><output>${masterFx[kind][key]}</output></label>`).join('');}
+function saveEffectSelections(){try{localStorage.setItem(FX_TYPE_STORAGE,JSON.stringify({reverb:$('reverbType').value,chorus:$('chorusType').value,params:masterFx}));}catch(err){log('Hardware effect saving unavailable: '+err.message)}}
+function sendMasterParam(kind,key,time){const spec=MASTER_FX_DEFS[kind]?.find(x=>x[0]===key);if(!spec||!state.out||state.out.state!=='connected')return;if(!state.midi?.sysexEnabled){$('fxTypeStatus').textContent='Enable SysEx to edit master FX.';return;}
+ const addr=spec[2],value=clamp(Math.round(masterFx[kind][key]),spec[3],spec[4]);send([0xF0,0x43,0x10,0x4C,0x02,0x01,addr,value,0xF7],time);$('fxTypeStatus').textContent=kind.toUpperCase()+' '+spec[1]+' = '+value+' · sent';}
+function sendMasterParams(kind,delay=0){if(!state.out||!state.midi?.sysexEnabled)return;const base=performance.now()+Math.max(0,delay);MASTER_FX_DEFS[kind].forEach(([key],i)=>sendMasterParam(kind,key,base+i*30));}
+const masterFxDebounce=new Map();
+$('masterFxParams').addEventListener('input',e=>{const el=e.target;if(!el.dataset.masterFx)return;const kind=el.dataset.masterFx,key=el.dataset.masterKey;masterFx[kind][key]=+el.value;el.nextElementSibling.textContent=el.value;saveEffectSelections();clearTimeout(masterFxDebounce.get(kind+key));masterFxDebounce.set(kind+key,setTimeout(()=>sendMasterParam(kind,key),85));});
+$('masterFxParams').addEventListener('change',e=>{const el=e.target;if(el.dataset.masterFx)sendMasterParam(el.dataset.masterFx,el.dataset.masterKey);});
+$('hwMasterEchoMs').value=getTrack('voice').hwEchoMs;
+$('hwMasterEchoFeedback').value=getTrack('voice').hwEchoFeedback;
+$('hwMasterEchoFeedbackValue').textContent=getTrack('voice').hwEchoFeedback+'%';
+$('hwMasterEchoMs').addEventListener('change',e=>{const t=getTrack('voice');t.hwEchoMs=clamp(Math.round(+e.target.value||270),1,355);e.target.value=t.hwEchoMs;scheduleVoiceEchoUpdate();saveBanks();});
+$('hwMasterEchoFeedback').addEventListener('input',e=>{const t=getTrack('voice');t.hwEchoFeedback=clamp(Math.round(+e.target.value||0),0,90);$('hwMasterEchoFeedbackValue').textContent=t.hwEchoFeedback+'%';scheduleVoiceEchoUpdate();saveBanks();});
+function setHardwareEffectType(kind){
+ const id=kind==='reverb'?'reverbType':'chorusType',selected=$(id).value;
+ if(selected==='keep'){ $('fxTypeStatus').textContent=kind.toUpperCase()+' type: keep current hardware setting.';return; }
+ if(!state.out||state.out.state!=='connected'){$('fxTypeStatus').textContent='Type selected. Connect MIDI to send it.';return;}
+ if(!state.midi?.sysexEnabled){ $('fxTypeStatus').textContent='SysEx unavailable. Reconnect with SysEx permission.';log('Type change requires MIDI SysEx permission');return; }
+ const entry=fxTypeChoices[kind].find(([name,msb,lsb])=>selected===msb.toString(16).padStart(2,'0')+'-'+lsb.toString(16).padStart(2,'0'));
+ if(!entry){$('fxTypeStatus').textContent='Unknown effect type — not sent.';return;}
+ const [label,msb,lsb]=entry,addr=kind==='reverb'?0x00:0x20;
+ const bytes=[0xF0,0x43,0x10,0x4C,0x02,0x01,addr,msb,lsb,0xF7];
+ try{state.out.send(bytes);$('fxTypeStatus').textContent=kind.toUpperCase()+': '+label+' — SysEx sent.';log('XG '+kind+' type → '+label+' ('+bytes.map(x=>x.toString(16).padStart(2,'0')).join(' ')+')')}
+ catch(e){$('fxTypeStatus').textContent='Effect SysEx failed: '+e.message;log('Effect type send failed: '+e.message)}
+}
+function applyHardwareEffectTypes(){setHardwareEffectType('reverb');setHardwareEffectType('chorus');if($('reverbType').value!=='keep')sendMasterParams('reverb',160);if($('chorusType').value!=='keep')sendMasterParams('chorus',390);}
+for(const [kind,id] of [['reverb','reverbType'],['chorus','chorusType']])$(id).addEventListener('change',()=>{saveEffectSelections();setHardwareEffectType(kind);if($(id).value!=='keep')sendMasterParams(kind,125);});
+
+// Standard Yamaha XG Echo variation. Real NSX-39 support depends on device mode.
+// System variation is shared, but only Yoko sends nonzero CC94 in this app.
+function xgVariation(addr,...data){send([0xF0,0x43,0x10,0x4C,0x02,0x01,addr,...data,0xF7]);}
+function xgVariationAt(addr,data,time){send([0xF0,0x43,0x10,0x4C,0x02,0x01,addr,...data,0xF7],time);}
+function xg14(ms){const n=clamp(Math.round(ms*10),1,3550);return [n>>7,n&127];}
+function configureVoiceEcho(){if(!state.out||state.out.state!=='connected')return;if(!state.midi?.sysexEnabled){log('Hardware Echo requires SysEx permission');return;}
+ const vt=getTrack('voice'),base=performance.now()+35;
+ // XG Variation effect type=ECHO (07 00), connection=SYSTEM (01), return unity.
+ const blocks=[[0x40,[0x07,0x00]],[0x5A,[0x01]],[0x56,[0x40]]];
+ const ms=clamp(vt.hwEchoMs||270,1,355),d=xg14(ms),half=xg14(Math.max(1,ms/2)),fb=clamp(64+Math.round((vt.hwEchoFeedback||0)*.6),64,118);
+ // Echo effect: parameter 1/3 delay L/R, 6/7 secondary delay,
+ // parameter 2/4 feedback. 2-byte parameter fields are 7-bit MSB/LSB.
+ blocks.push([0x42,d],[0x46,d],[0x4C,half],[0x4E,half],[0x44,[0,fb]],[0x48,[0,fb]]);
+ blocks.forEach(([address,data],i)=>xgVariationAt(address,data,base+i*35));
+ send([0xB0,94,Math.round(vt.delay*127/100)],base+blocks.length*35);
+ log('Requested NSX-39 XG hardware Echo • '+ms+' ms, feedback '+vt.hwEchoFeedback+'%.');
+}
+let echoParamTimer=null;
+function scheduleVoiceEchoUpdate(){if(echoParamTimer)clearTimeout(echoParamTimer);echoParamTimer=setTimeout(()=>{echoParamTimer=null;configureVoiceEcho()},180)}
+function sendCC(t,num,val){send([0xB0+t.ch-1,num,clamp(Math.round(val),0,127)]);}
+function applyTrack(t){if(!state.out)return;sendCC(t,7,t.vol);sendCC(t,10,t.pan);sendCC(t,91,t.reverb);sendCC(t,93,t.chorus);if(t.id!=='voice'){sendCC(t,74,clamp(Math.round(64+t.drive*.42),0,127));sendCC(t,71,clamp(Math.round(64+t.drive*.5),0,127));sendCC(t,73,t.attack);sendCC(t,72,t.release);sendCC(t,94,0);}else sendCC(t,94,Math.round(t.delay*127/100));}
+function program(t){if(!t||t.ch===1||t.ch===10)return;send([0xC0+t.ch-1,clamp(t.program-1,0,127)]);log('Program Change CH '+t.ch+' → '+t.program+' '+GM[t.program-1]);}
+function prime(){for(const t of TRACKS){applyTrack(t);program(t);}}
+function refreshPorts(){if(!state.midi)return;const old=$('ports').value,ps=[...state.midi.outputs.values()];$('ports').replaceChildren(new Option('Select a MIDI output…',''));for(const p of ps)$('ports').add(new Option(p.name+(p.state==='disconnected'?' (disconnected)':''),p.id));if(ps.some(p=>p.id===old))$('ports').value=old;else if(ps.length===1)$('ports').value=ps[0].id;state.out=state.midi.outputs.get($('ports').value)||null;status(state.out?'CONNECTED • '+state.out.name:'SELECT OUTPUT',!!state.out);}
+$('connect').onclick=async()=>{try{if(!navigator.requestMIDIAccess)throw Error('Web MIDI unavailable in this browser');state.midi=await navigator.requestMIDIAccess({sysex:true});state.midi.onstatechange=()=>{refreshPorts();log('MIDI ports changed')};refreshPorts();prime();applyHardwareEffectTypes();configureVoiceEcho();log('MIDI ready, SysEx '+(state.midi.sysexEnabled?'allowed':'not allowed'));}catch(e){status('MIDI ERROR');log(e.message);}};
+$('ports').onchange=()=>{stop();refreshPorts();prime();applyHardwareEffectTypes();configureVoiceEcho()};
+const kanaRows=[
+'あ|い|う|え|お|か|き|く|け|こ|が|ぎ|ぐ|げ|ご|きゃ|きゅ|きょ|ぎゃ|ぎゅ|ぎょ|さ|すぃ|す|せ|そ|ざ|ずぃ|ず|ぜ|ぞ|しゃ',
+'し|しゅ|しぇ|しょ|じゃ|じ|じゅ|じぇ|じょ|た|てぃ|とぅ|て|と|だ|でぃ|どぅ|で|ど|てゅ|でゅ|ちゃ|ち|ちゅ|ちぇ|ちょ|つぁ|つぃ|つ|つぇ|つぉ|な',
+'に|ぬ|ね|の|にゃ|にゅ|にょ|は|ひ|ふ|へ|ほ|ば|び|ぶ|べ|ぼ|ぱ|ぴ|ぷ|ぺ|ぽ|ひゃ|ひゅ|ひょ|びゃ|びゅ|びょ|ぴゃ|ぴゅ|ぴょ|ふぁ',
+'ふぃ|ふゅ|ふぇ|ふぉ|ま|み|む|め|も|みゃ|みゅ|みょ|や|ゆ|よ|ら|り|る|れ|ろ|りゃ|りゅ|りょ|わ|うぃ|うぇ|うぉ|ん|ん|ん|ん|ん'];
+const ks=kanaRows.join('|').split('|');if(ks.length!==128)throw Error('Phoneme table wrong size');const km=new Map();ks.forEach((x,i)=>{if(!km.has(x))km.set(x,i)});
+// NSX-39 slot 0 is a temporary 64-phoneme lyric buffer. Use <=32 syllables per
+// 16-beat cycle for playable delivery, one voice Note On per lyric phoneme.
+const MAX_LYRICS_PER_CYCLE=32,MAX_LYRICS_TOTAL=512;
+function phonemes(s){return parseLyricSyllables(s).tokens.map(x=>x.code)}
+function parseLyricSyllables(text){const src=String(text||'').normalize('NFKC').replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));const tokens=[],unsupported=new Set();
+ const punct={ '、':.8,',':.8,'，':.8,'。':1.65,'.':1.65,'！':1.6,'!':1.6,'？':1.6,'?':1.6,';':1.05,'；':1.05,':':.75,'：':.75,'\n':1.6 };
+ for(let i=0;i<src.length;){const ch=src[i];if(ch in punct){if(tokens.length)tokens[tokens.length-1].rest=Math.max(tokens[tokens.length-1].rest,punct[ch]);i++;continue;}
+ if(/\s/u.test(ch)){if(ch==='\n'&&tokens.length)tokens[tokens.length-1].rest=Math.max(tokens[tokens.length-1].rest,1.5);i++;continue;}
+ if(ch==='ー'){if(tokens.length)tokens[tokens.length-1].hold=true;i++;continue;}
+ if(ch==='っ'){if(tokens.length)tokens[tokens.length-1].rest=Math.max(tokens[tokens.length-1].rest,.25);i++;continue;}
+ let hit=false;for(let j=3;j>=1;j--){const token=src.slice(i,i+j);if(km.has(token)){tokens.push({code:km.get(token),kana:token,rest:0,hold:false});i+=j;hit=true;break;}}
+ if(!hit){if(!/[\s\-–—「」『』（）()\[\]…・/]/u.test(ch))unsupported.add(ch);i++;}}
+ return {tokens,unsupported:[...unsupported]};}
+function makeVocalProgram(text,contour='gentle'){
+ const parsed=parseLyricSyllables(text),all=parsed.tokens.slice(0,MAX_LYRICS_TOTAL),sections=[];
+ for(let first=0;first<all.length;){let end=Math.min(all.length,first+MAX_LYRICS_PER_CYCLE);
+  if(end<all.length&&end-first>18){for(let i=end-1;i>=first+18;i--){if(all[i].rest>=.8){end=i+1;break;}}}
+  const syllables=all.slice(first,end),units=syllables.reduce((v,x)=>v+1+x.rest,0),pace=Math.min(2.1,15.05/Math.max(units,1)),notes=[];
+  let beat=.44;const patterns={gentle:[0,1,2,2,1,3,2,1,0],playful:[0,2,4,1,3,5,2,4,1],rising:[0,1,2,3,4,3,5,4,2]};const degrees=patterns[contour]||patterns.gentle;
+  for(let i=0;i<syllables.length;i++){const sy=syllables[i],nextDist=pace*(1+sy.rest),duration=clamp(pace*.74+(sy.hold?.16:0),.12,1.15),midiNote=safeNote(degree(degrees[i%degrees.length]+(sy.rest>=1.5?0:0),5));
+   const at=Math.min(15.30,beat);notes.push(note(at,midiNote,Math.min(duration,Math.max(.1,nextDist-.08),15.70-at),i%4===0?104:91));beat+=nextDist;}
+  sections.push({codes:syllables.map(x=>x.code),notes,kana:syllables.map(x=>x.kana).join('')});first=end;
+ }
+ return {sections,stats:{syllables:parsed.tokens.length,passes:sections.length,unsupported:parsed.unsupported,truncated:parsed.tokens.length>MAX_LYRICS_TOTAL}};
+}
+function refreshVocalStatus(message){const element=$('vocalStatus');if(!element)return;const st=state.vocalStats;if(!st)return;
+ const text=message||`${st.syllables} syllables · ${st.passes} × 16-beat loop${st.passes===1?'':'s'} · melody in ${KEYNOTES[root()]} ${$('scale').value}. ${st.passes>1?'After the final lyric loop, the full lyric sequence starts again.':'This phrase repeats every 16 beats.'}`;
+ const warnings=[st.truncated?'Only the first '+MAX_LYRICS_TOTAL+' syllables are used.':'',st.unsupported.length?'Skipped unsupported characters: '+st.unsupported.slice(0,16).join(' ')+' (use kana pronunciations).':''].filter(Boolean);
+ element.textContent=text+(warnings.length?' '+warnings.join(' '):'');
+}
+function persistVocal(){try{localStorage.setItem(VOCAL_STORE,JSON.stringify({lyrics:state.lyrics,contour:$('vocalContour').value,keep:$('keepLyrics').checked}))}catch{}}
+function applyVocalProgram(text,fromAI=false){const lyric=String(text||'').trim();const next=makeVocalProgram(lyric,$('vocalContour').value);
+ if(!next.sections.length){refreshVocalStatus('Enter Japanese hiragana or katakana; no singable syllables found.');return false;}
+ if(state.playing){state.pendingVocal={lyrics:lyric,program:next};refreshVocalStatus('New lyrics queued for the next 16-beat loop boundary. '+next.stats.syllables+' syllables across '+next.stats.passes+' loop(s).');}
+ else{commitVocalProgram(lyric,next);}
+ if(fromAI)$('vocalLyrics').value=lyric;
+ return true;}
+function commitVocalProgram(lyric,program){clearFixedGroove();state.lyrics=lyric;state.vocalSections=program.sections;state.vocalStats=program.stats;state.base.voice=program.sections[0]?.notes||[];invalidate();persistVocal();refreshVocalStatus();log('Yoko lyrics arranged: '+program.stats.syllables+' syllables across '+program.stats.passes+' loops.');}
+function lyricLoad(cycle,timestamp){if(!state.out||!state.midi?.sysexEnabled)return;const section=state.vocalSections[cycle%Math.max(1,state.vocalSections.length)];if(!section?.codes.length)return;
+ // Schedule the temporary lyric buffer reset *at* the next cycle boundary, with
+ // the first vocal note deliberately delayed by 0.44 beats to let SysEx settle.
+ send([0xF0,0x43,0x79,0x09,0x11,0x0A,0x00,...section.codes,0xF7],timestamp);
+}
+$('vocalLyrics').value=state.lyrics;
+if(['gentle','playful','rising'].includes(vocalPrefs?.contour))$('vocalContour').value=vocalPrefs.contour;
+if(typeof vocalPrefs?.keep==='boolean')$('keepLyrics').checked=vocalPrefs.keep;
+$('applyLyrics').onclick=()=>applyVocalProgram($('vocalLyrics').value);
+$('vocalContour').onchange=()=>applyVocalProgram($('vocalLyrics').value);
+$('keepLyrics').onchange=persistVocal;
+function runTick(){if(!state.playing)return;const now=performance.now(),beatMs=60000/state.bpm,loopMs=beatMs*16,horizon=now+170;if(state.scheduledUntil<horizon){const first=Math.max(0,Math.floor((state.scheduledUntil-state.loopStart)/loopMs)),last=Math.max(0,Math.floor((horizon-state.loopStart)/loopMs));for(let cy=first;cy<=last;cy++){const cyStart=state.loopStart+cy*loopMs;if(cy!==state.cycle&&cyStart<=horizon){if(state.pendingVocal&&cy>0){const pending=state.pendingVocal;state.pendingVocal=null;commitVocalProgram(pending.lyrics,pending.program);}state.cycle=cy;lyricLoad(cy,cyStart+6);}const events=scheduleEventsForCycle(cy);if(cy===state.cycle&&(!state.lastHeard||state.lastHeard.cycle!==cy)){state.lastHeard={cycle:cy,parts:copySourceParts(cy)};}
+ for(const e of events){const sw=swingMs;const grid8=Math.round(e.beat*2);const off8ms=(Math.abs(e.beat*2-grid8)<.04&&grid8%2===1)?sw:0;let t=cyStart+e.beat*beatMs+off8ms;if(t<state.scheduledUntil||t>=horizon)continue;const tr=e.t,soloActive=TRACKS.some(x=>x.solo);if(tr.mute||(soloActive&&!tr.solo))continue;const c=tr.comp/100,d=tr.drive/100;const baseVel=72+(e.vel-72)*(1-c*.86);const vel=clamp(Math.round(baseVel+(127-baseVel)*d*.25),1,127),ch=tr.ch-1;const pitch=tr.id==='drums'?e.note:safeNote(e.note+12*tr.octave);send([0x90+ch,pitch,vel],t);const durMs=clamp(e.dur*beatMs*(tr.gate/100),35,beatMs*3.75);send([0x80+ch,pitch,0],t+durMs);}}
+ state.scheduledUntil=horizon;}
+ const position=Math.max(0,((now-state.loopStart)/loopMs)%1);$('barfill').style.width=(100*position)+'%';const bar=Math.floor(position*4)+1,beat=Math.floor((position*16)%4)+1;$('position').textContent='BAR '+bar+' / 4 · BEAT '+beat+' · LOOP '+(Math.floor(Math.max(0,(now-state.loopStart)/loopMs))+1);
+ }
+let timer=null;function play(){if(state.playing)return;if(trainerBusy){log('Finish the Claude training request before playing.');return;}if(!state.out||state.out.state!=='connected'){log('Connect the Pocket Miku MIDI output first.');return}state.bpm=clamp(+$('bpm').value||110,50,220);state.playing=true;syncDesignerLock();state.loopStart=performance.now()+200;state.scheduledUntil=state.loopStart;state.cycle=-1;state.cache.clear();state.seedCache.clear();prime();timer=setInterval(runTick,25);runTick();$('play').textContent='● PLAYING';log('Transport started at '+state.bpm+' BPM');}
+function stop(){if(timer){clearInterval(timer);timer=null}state.playing=false;try{state.out?.clear()}catch{};for(const t of TRACKS){sendCC(t,123,0);sendCC(t,120,0);}state.cache.clear();state.seedCache.clear();$('play').textContent='▶ PLAY LOOP';$('barfill').style.width='0%';$('position').textContent='BAR 1 / 4 · BEAT 1';if(previewSession)restorePreview();if(state.pendingVocal){const pending=state.pendingVocal;state.pendingVocal=null;commitVocalProgram(pending.lyrics,pending.program);}syncDesignerLock();}
+$('play').onclick=play;$('stop').onclick=()=>{stop();log('Stopped')};$('regen').onclick=()=>generate('all');$('demo').onclick=()=>{generate('all');$('composeStatus').textContent='Local generator active — no API call made.';};
+$('bpm').onchange=()=>{if(state.playing){stop();play();}else state.bpm=clamp(+$('bpm').value||110,50,220)};
+$('key').onchange=()=>{generate('bass');generate('chords');generate('chords2');generate('solo');generate('voice')};$('scale').onchange=$('key').onchange; $('chordCount').onchange=()=>generate('all');
+let swingMs=0;
+function setSwing(ms){swingMs=clamp(Math.round(ms),-60,60);$('swing').value=String(swingMs);$('swingReadout').textContent=(swingMs>0?'+':'')+swingMs+' ms';const dial=$('swingDial');dial.style.setProperty('--swing-angle',(swingMs/60*135)+'deg');dial.setAttribute('aria-valuenow',String(swingMs));dial.setAttribute('aria-valuetext',swingMs===0?'Straight 0 milliseconds':(swingMs>0?'Late ':'Early ')+Math.abs(swingMs)+' milliseconds');invalidate();}
+$('swingDown').onclick=()=>setSwing(swingMs-1);$('swingUp').onclick=()=>setSwing(swingMs+1);$('swingZero').onclick=()=>setSwing(0);
+let swingDrag=null;const swingDial=$('swingDial');
+swingDial.addEventListener('pointerdown',e=>{e.preventDefault();swingDrag={y:e.clientY,v:swingMs};swingDial.setPointerCapture(e.pointerId);});
+swingDial.addEventListener('pointermove',e=>{if(swingDrag)setSwing(swingDrag.v+Math.round((swingDrag.y-e.clientY)/2));});
+for(const type of ['pointerup','pointercancel','lostpointercapture'])swingDial.addEventListener(type,()=>{swingDrag=null});
+swingDial.addEventListener('keydown',e=>{if(['ArrowUp','ArrowRight','ArrowDown','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();setSwing(e.key==='Home'?-60:e.key==='End'?60:swingMs+(e.key==='ArrowUp'||e.key==='ArrowRight'?1:-1));}});
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+const FXS=[['vol','VOL'],['drive','DRV'],['comp','CMP'],['delay','DLY'],['reverb','REV'],['chorus','CHO']];
+function inspMarkup(t,s,i){const opts=bank[t.id].map(b=>`<option value="${esc(b.id)}"${b.id===s.id?' selected':''}>${esc(b.name)}</option>`).join('');return `<div class="knobslot ${activeId===t.id&&activeSlot===i?'active':''}" style="--accent:${t.c}"><div class="knob-top"><label class="knob-number">K${String(i+1).padStart(2,'0')}</label><span class="knob-mini-value">${s.level}%</span></div><input class="inspo-fader" type="range" min="0" max="100" value="${s.level}" data-slot="${i}" data-track="${t.id}" aria-label="${t.name} inspiration ${i+1} strength"><select data-assign="${i}" data-track="${t.id}" aria-label="Preset for ${t.name} knob ${i+1}"><option value="">— NONE —</option>${opts}</select></div>`;}
+function trackSoundControls(t){
+ const oct=t.id==='drums'?'':`<div class="field"><label class="label" for="oct-${t.id}">OCTAVE</label><select id="oct-${t.id}" data-oct-track="${t.id}" aria-label="${t.name} octave transpose">${[-3,-2,-1,0,1,2,3].map(v=>`<option value="${v}"${v===t.octave?' selected':''}>${v>0?'+':''}${v} OCT</option>`).join('')}</select></div>`;
+ if(t.id==='voice')return `<div class="strip-sound-tools">${oct}<div class="sound-note">HARDWARE ECHO controls are in MASTER FX above; DLY sets vocal Echo send. NO MIDI note echoes on CH 1.</div></div>`;
+ const units=['off','1/16','1/8','Dotted 1/8','1/4','1/2'];
+ return `<div class="strip-sound-tools">${oct}<div class="field"><label class="label" for="ebpm-${t.id}">ECHO BPM</label><input id="ebpm-${t.id}" data-echo-bpm="${t.id}" type="number" min="40" max="300" step="1" value="${t.echoBpm}" aria-label="${t.name} independent MIDI echo BPM"></div><div class="field"><label class="label" for="div-${t.id}">ECHO NOTE</label><select id="div-${t.id}" data-echo-div="${t.id}" aria-label="${t.name} echo division">${units.map(u=>`<option value="${u}"${u===t.echo?' selected':''}>${u}</option>`).join('')}</select></div><div class="field"><label class="label" for="reps-${t.id}">REPEATS</label><select id="reps-${t.id}" data-echo-repeats="${t.id}" aria-label="${t.name} echo repeats">${Array.from({length:16},(_,i)=>i+1).map(i=>`<option value="${i}"${i===t.echoRepeats?' selected':''}>${i}</option>`).join('')}</select></div></div>`;
+}
+function mixerTrack(t){return `<article class="strip ${activeId===t.id?'selected':''}" data-mix-track="${t.id}" style="--accent:${t.c}">
+ <button class="strip-head" data-select="${t.id}" aria-label="Select ${t.name}"><strong>${esc(t.name.replace('YOKO VOICE','YOKO'))}</strong><small>CH ${t.ch}</small></button>
+ <div class="strip-toggles"><button class="mini ${t.mute?'on':''}" data-toggle="mute" data-track="${t.id}" title="Mute">M</button><button class="mini solo ${t.solo?'on':''}" data-toggle="solo" data-track="${t.id}" title="Solo">S</button><button class="mini" data-random="${t.id}" title="Regenerate channel">↻</button></div>
+ <div class="strip-faders">${FXS.map(([p,n])=>{const v=p==='vol'||p==='reverb'||p==='chorus'?Math.round(t[p]*100/127):t[p];return `<label class="fx-line ${p==='vol'?'vol-line':''}" title="${{drive:'MIDI harmonic drive approximation',comp:'MIDI velocity compression',delay:t.id==='voice'?'NSX-39 onboard hardware Echo send (CC94)':'MIDI note echo with per-track BPM',reverb:'NSX reverb send',chorus:'NSX chorus send',vol:'Volume CC7'}[p]}"><span>${n}</span><input type="range" min="0" max="100" value="${v}" data-fx="${p}" data-track="${t.id}" aria-label="${t.name} ${p}"><output>${v}</output></label>`}).join('')}</div>
+ ${trackSoundControls(t)}
+ <div class="strip-improv"><label class="strip-improv-label" for="improv-${t.id}"><span>IMPROV</span><output>${t.improv}%</output></label><input type="range" id="improv-${t.id}" data-improv-track="${t.id}" min="0" max="100" value="${t.improv}" aria-label="${t.name} improvisation percentage"></div>
+ <div class="strip-knobs" aria-label="Ten inspiration controls">${t.slots.map((s,i)=>inspMarkup(t,s,i)).join('')}</div>
+ ${t.ch===1||t.ch===10?'':`<div class="strip-program"><label class="label" for="pc-${t.id}">GM PROGRAM · CH ${t.ch}</label><div class="strip-program-controls"><select id="pc-${t.id}" data-program-track="${t.id}" aria-label="${t.name} General MIDI instrument">${GM.map((n,i)=>`<option value="${i+1}"${i+1===t.program?' selected':''}>${i+1} · ${esc(n)}</option>`).join('')}</select><button class="mini" type="button" data-send-program="${t.id}" aria-label="Resend ${t.name} program change">SEND</button></div></div>`}
+ <div class="tiny-step" id="steps-${t.id}" aria-label="Pattern activity"></div></article>`;}
+function drawMixer(){const node=$('tracks');node.innerHTML=TRACKS.map(mixerTrack).join('');}
+function findPreset(t,id){return bank[t.id].find(p=>p.id===id)}
+function drawRack(){const t=getTrack(activeId);$('activeName').textContent=t.name+' · MIDI CH '+t.ch;
+ const program=$('programArea');program.innerHTML=t.ch===1||t.ch===10?'<span class="small">Program Change disabled on vocal CH 1 and drum CH 10.</span>':`<label class="label" for="programSelect">GM INSTRUMENT / CH ${t.ch}</label><div class="program-inline"><select id="programSelect">${GM.map((n,i)=>`<option value="${i+1}"${i+1===t.program?' selected':''}>${i+1}. ${esc(n)}</option>`).join('')}</select><button class="btn" id="programSend">SEND PC</button></div>`;
+ $('delayArea').innerHTML=t.id==='voice'?'<span class="small">Yoko uses the NSX-39 hardware Echo: edit echo milliseconds and feedback in MASTER FX (max 355 ms). The DLY fader sets the effect send.</span>':'<span class="small">Independent MIDI Echo BPM, division, and repeats are edited in this channel’s mixer strip. The global BPM stays unchanged.</span>';
+ $('improvRange').value=t.improv;$('improvValue').textContent=t.improv+'%'; $('panRange').value=Math.round(t.pan*100/127);$('panValue').textContent=Math.round(t.pan*100/127)+'%';
+ $('presetBankCount').textContent=bank[designerTarget].length+' in '+getTrack(designerTarget).name+' bank'; $('activeSlot').value=String(activeSlot+1);
+}
+function selectTrack(id){activeId=id;drawMixer();redrawSteps();drawRack()}
+function refreshKnob(trackId,id,val){const item=document.querySelector(`.strip[data-mix-track="${trackId}"] [data-slot="${id}"]`);if(!item)return;item.value=val;const box=item.closest('.knobslot');const mini=box.querySelector('.knob-mini-value');if(mini)mini.textContent=val+'%';box.classList.toggle('active',activeId===trackId&&activeSlot===id);} 
+const PARAM_HELP={timing:'Delays or advances notes',swing:'Moves offbeat eighth notes',density:'Adds or removes notes',ghost:'Quiet extra hits',syncopation:'Moves accents off-grid',accent:'Downbeat / offbeat emphasis',articulation:'Longer / shorter gates',harmonic:'Scale-aware melodic change'};
+function readDraft(){return safeParams(Object.fromEntries(PARAMS.map(k=>[k,Number(document.querySelector(`[data-param="${k}"]`)?.value)||0])))}
+function drawParams(p){draftParams=safeParams(p||{});$('parameterGrid').innerHTML=PARAMS.map(k=>`<label class="param-cell"><span class="param-heading"><span>${k.toUpperCase()}</span><output data-param-output="${k}">${draftParams[k]}</output></span><input type="range" min="-100" max="100" step="1" data-param="${k}" value="${draftParams[k]}" aria-label="${k}"><span class="small">${PARAM_HELP[k]}</span></label>`).join('');syncDesignerLock();}
+$('parameterGrid').addEventListener('input',e=>{const el=e.target;if(!el.dataset.param)return;draftParams[el.dataset.param]=Number(el.value);const o=document.querySelector(`[data-param-output="${el.dataset.param}"]`);if(o)o.textContent=el.value;});
+function refillDesignerBank(selected=''){const t=getTrack(designerTarget),old=selected||$('trainLoadPreset').value;
+ $('trainChannel').value=t.id;$('trainLoadPreset').innerHTML='<option value="">— New inspiration —</option>'+bank[t.id].map(p=>`<option value="${esc(p.id)}">${esc(p.name)}${p.factory?' (factory)':''}</option>`).join('');
+ if(bank[t.id].some(p=>p.id===old))$('trainLoadPreset').value=old;
+ $('presetBankCount').textContent=bank[t.id].length+' in '+t.name+' bank';
+}
+function setLoadedStatus(){const name=editingId?bank[designerTarget].find(p=>p.id===editingId)?.name:null;$('loadedPresetStatus').textContent=name?'Editing: '+name:'New unsaved inspiration'}
+function clearDesigner(){editingId='';$('trainLoadPreset').value='';$('presetName').value='';$('trainPrompt').value='';drawParams({});setLoadedStatus();$('bankStatus').textContent='New unsaved preset. Write a prompt, refine with Claude, or adjust the sliders.';}
+function loadDesigner(){if(state.playing||trainerBusy)return;const id=$('trainLoadPreset').value,p=bank[designerTarget].find(x=>x.id===id);if(!p){clearDesigner();return;}editingId=id;$('presetName').value=p.name;$('trainPrompt').value=p.description||'';drawParams(p.params);setLoadedStatus();$('bankStatus').textContent='Loaded '+p.name+'. Edit the math or prompt; use Save / Overwrite or Save as New.';}
+function setDesignerChannel(id){if(state.playing||trainerBusy)return;designerTarget=id;editingId='';refillDesignerBank('');clearDesigner();activeId=id;drawMixer();redrawSteps();drawRack();}
+$('trainChannel').onchange=e=>setDesignerChannel(e.target.value);
+$('loadPreset').onclick=loadDesigner;
+$('newPreset').onclick=clearDesigner;
+$('trainLoadPreset').onchange=()=>{if(!state.playing&&$('trainLoadPreset').value){$('bankStatus').textContent='Press LOAD TO EDIT to open this preset.';}};
+function saveDesigner(asNew){if(state.playing||trainerBusy){$('bankStatus').textContent='Stop playback before saving inspiration DNA.';return null;}const t=getTrack(designerTarget),name=$('presetName').value.trim().slice(0,70),description=$('trainPrompt').value.trim().slice(0,500);if(!name){$('bankStatus').textContent='Enter a preset name before saving.';return null;}
+ const params=readDraft();let p=(!asNew&&editingId)?bank[t.id].find(x=>x.id===editingId):null;
+ if(p){p.name=name;p.params=params;p.description=description;p.factory=false;}else{p=makePreset(name,params,description,false);bank[t.id].push(p);}
+ editingId=p.id;refillDesignerBank(p.id);$('trainLoadPreset').value=p.id;setLoadedStatus();saveBanks();drawMixer();redrawSteps();drawRack();invalidate();$('bankStatus').textContent=(asNew?'Saved new variation':'Saved')+' “'+p.name+'” in '+t.name+' bank. Assign via any of its 10 dropdowns.';return p;}
+$('savePreset').onclick=()=>saveDesigner(false);
+$('saveAsPreset').onclick=()=>saveDesigner(true);
+$('assignPreset').onclick=()=>{if(state.playing||trainerBusy){$('bankStatus').textContent='Stop playback before assigning.';return;}const t=getTrack(designerTarget),p=editingId?bank[t.id].find(x=>x.id===editingId):null;if(!p){$('bankStatus').textContent='Save this inspiration first, then assign it.';return;}const k=clamp(activeSlot,0,9);t.slots[k]={id:p.id,level:t.slots[k].level};saveBanks();activeId=t.id;drawMixer();redrawSteps();drawRack();invalidate();$('bankStatus').textContent='Assigned “'+p.name+'” to '+t.name+' knob '+(k+1)+'. Adjust its strength in the mixer.';};
+// Only editing controls are locked while normal playback or the temporary preview is active.
+function syncDesignerLock(){const locked=state.playing||trainerBusy;for(const el of $('trainingPanel').querySelectorAll('input,select,textarea,button')){if(el.id==='stopPreview')el.disabled=!previewSession;else el.disabled=locked;}if($('train').disabled&&trainerBusy)$('train').disabled=true;
+ $('previewStatus').textContent=previewSession?'PREVIEW PLAYING: '+getTrack(previewSession.target).name+' at 100%. Press STOP PREVIEW to restore your mixer.':state.playing?'STOP MIDI PLAYBACK TO EDIT / PREVIEW AN INSPIRATION.':trainerBusy?'CLAUDE IS REFINING THE DNA.':'PREVIEW runs this channel alone at 100%, ignoring its other inspiration knobs; it is temporary and not saved.';
+ $('play').disabled=!!previewSession||trainerBusy;
+}
+function restorePreview(){if(!previewSession)return;const session=previewSession;previewSession=null;for(const snap of session.tracks){const t=getTrack(snap.id);t.mute=snap.mute;t.solo=snap.solo;if(snap.id===session.target){t.slots=snap.slots;t.improv=snap.improv;}}
+ bank[session.target]=bank[session.target].filter(p=>p.id!==session.id);invalidate();drawMixer();redrawSteps();drawRack();refillDesignerBank(editingId);
+ $('bankStatus').textContent='Preview stopped. Mixer and original knob assignments restored.';syncDesignerLock();}
+$('previewPreset').onclick=()=>{if(state.playing||trainerBusy){$('bankStatus').textContent='Stop the main loop before starting a preview.';return;}if(!state.out||state.out.state!=='connected'){$('bankStatus').textContent='Connect your Pocket Miku MIDI output to audition the 100% preset.';return;}
+ const t=getTrack(designerTarget),tmp=makePreset($('presetName').value.trim()||'Unsaved preview',readDraft(),$('trainPrompt').value.trim());tmp.id='preview_'+Date.now();
+ previewSession={id:tmp.id,target:t.id,tracks:TRACKS.map(tr=>({id:tr.id,mute:tr.mute,solo:tr.solo,slots:tr.id===t.id?tr.slots.map(s=>({...s})):null,improv:tr.improv}))};
+ bank[t.id].push(tmp);for(const tr of TRACKS){tr.mute=tr.id!==t.id;tr.solo=false;}t.slots=t.slots.map((_,i)=>({id:i===activeSlot?tmp.id:'',level:i===activeSlot?100:0}));t.improv=0;
+ invalidate();drawMixer();redrawSteps();drawRack();play();if(!state.playing){restorePreview();return;}$('bankStatus').textContent='Previewing '+t.name+' DNA at 100% on knob '+(activeSlot+1)+' (temporary).';syncDesignerLock();};
+$('stopPreview').onclick=()=>stop();
+refillDesignerBank();drawParams({});setLoadedStatus();
+function setFx(t,p,v){v=clamp(Number(v)||0,0,100);if(['vol','reverb','chorus','pan'].includes(p)){t[p]=Math.round(v*127/100);sendCC(t,({vol:7,reverb:91,chorus:93,pan:10})[p],t[p]);}else if(p==='drive'){t.drive=v;if(t.id!=='voice'){sendCC(t,71,Math.round(64+v*.5));sendCC(t,74,Math.round(64+v*.42));}invalidate();}else if(p==='comp'){t.comp=v;invalidate();}else if(p==='delay'){t.delay=v;if(t.id==='voice')sendCC(t,94,Math.round(v*127/100));else if(t.echo==='off'&&v>0)t.echo='1/8';invalidate();}saveBanks();}
+$('tracks').addEventListener('change',e=>{const el=e.target,d=el.dataset;
+ if(d.octTrack){const t=getTrack(d.octTrack);t.octave=clamp(Math.round(Number(el.value)||0),-3,3);invalidate();saveBanks();log(t.name+' octave → '+t.octave);return;}
+ if(d.echoBpm){const t=getTrack(d.echoBpm);t.echoBpm=clamp(Math.round(Number(el.value)||state.bpm),40,300);el.value=t.echoBpm;invalidate();saveBanks();return;}
+ if(d.echoDiv){const t=getTrack(d.echoDiv);t.echo=el.value;invalidate();saveBanks();return;}
+ if(d.echoRepeats){const t=getTrack(d.echoRepeats);t.echoRepeats=clamp(Math.round(Number(el.value)||2),1,16);invalidate();saveBanks();return;}
+ if(d.hwMs){const t=getTrack('voice');t.hwEchoMs=clamp(Math.round(Number(el.value)||270),1,355);el.value=t.hwEchoMs;scheduleVoiceEchoUpdate();saveBanks();return;}
+});
+// Improvisation belongs to each strip; change only its own percentage without rerendering
+// all 50 knob controls (rerendering would interrupt a drag gesture).
+$('tracks').addEventListener('input',e=>{const el=e.target;if(!('improvTrack' in el.dataset))return;const t=getTrack(el.dataset.improvTrack);t.improv=clamp(Number(el.value)||0,0,100);const readout=el.closest('.strip-improv')?.querySelector('output');if(readout)readout.textContent=t.improv+'%';if(activeId===t.id){$('improvRange').value=t.improv;$('improvValue').textContent=t.improv+'%';}invalidate();saveBanks();});
+$('tracks').addEventListener('input',e=>{const el=e.target;if(!el.dataset.hwFeedback)return;const t=getTrack('voice');t.hwEchoFeedback=clamp(+el.value,0,90);el.nextElementSibling.textContent=t.hwEchoFeedback+'%';scheduleVoiceEchoUpdate();saveBanks();});
+$('tracks').addEventListener('change',e=>{const select=e.target;if(!('programTrack' in select.dataset))return;const t=getTrack(select.dataset.programTrack);if(!t||t.ch===1||t.ch===10)return;t.program=clamp(Number(select.value)||1,1,128);program(t);saveBanks();if(activeId===t.id){const quick=$('programSelect');if(quick)quick.value=t.program;}});
+$('tracks').addEventListener('input',e=>{const el=e.target;if(!el.dataset.fx)return;const t=getTrack(el.dataset.track);setFx(t,el.dataset.fx,el.value);el.nextElementSibling.textContent=el.value;});
+$('tracks').addEventListener('click',e=>{const el=e.target.closest('button');if(!el)return;if(el.dataset.sendProgram){program(getTrack(el.dataset.sendProgram));return;}if(el.dataset.select){selectTrack(el.dataset.select);return;}if(el.dataset.toggle){const t=getTrack(el.dataset.track);t[el.dataset.toggle]=!t[el.dataset.toggle];drawMixer();invalidate();return}if(el.dataset.random){generate(el.dataset.random);return}});
+$('tracks').addEventListener('input',e=>{const el=e.target;if(!el.dataset.slot)return;const i=+el.dataset.slot,t=getTrack(el.dataset.track);activeId=t.id;activeSlot=i;t.slots[i].level=+el.value;document.querySelectorAll('.strip').forEach(strip=>strip.classList.toggle('selected',strip.dataset.mixTrack===activeId));document.querySelectorAll('.knobslot').forEach(box=>{const tr=box.closest('.strip')?.dataset.mixTrack,slot=Number(box.querySelector('[data-slot]')?.dataset.slot);box.classList.toggle('active',tr===activeId&&slot===activeSlot)});refreshKnob(t.id,i,+el.value);drawRack();invalidate();saveBanks();});
+$('tracks').addEventListener('change',e=>{const el=e.target;if(!('assign' in el.dataset))return;const i=+el.dataset.assign,t=getTrack(el.dataset.track);activeId=t.id;activeSlot=i;t.slots[i].id=el.value;invalidate();saveBanks();drawMixer();redrawSteps();drawRack();});
+$('activeSlot').addEventListener('change',e=>{activeSlot=+e.target.value-1;document.querySelectorAll('.knobslot').forEach(box=>{const track=box.closest('.strip')?.dataset.mixTrack,slot=Number(box.querySelector('[data-slot]')?.dataset.slot);box.classList.toggle('active',track===activeId&&slot===activeSlot)});});
+$('improvRange').oninput=e=>{const t=getTrack(activeId);t.improv=+e.target.value;$('improvValue').textContent=t.improv+'%';const strip=$('improv-'+t.id);if(strip){strip.value=t.improv;strip.closest('.strip-improv').querySelector('output').textContent=t.improv+'%';}invalidate();saveBanks();};
+$('panRange').oninput=e=>{setFx(getTrack(activeId),'pan',e.target.value);$('panValue').textContent=e.target.value+'%';};
+$('programArea').addEventListener('change',e=>{if(e.target.id==='programSelect'){const t=getTrack(activeId);t.program=clamp(+e.target.value||1,1,128);program(t);saveBanks();const stripSelect=$('pc-'+t.id);if(stripSelect)stripSelect.value=String(t.program);}});
+$('programArea').addEventListener('click',e=>{if(e.target.id==='programSend')program(getTrack(activeId));});
+
+function exportBank(){const blob=new Blob([JSON.stringify({version:'0.3.2',bank,tracks:TRACKS.map(t=>({id:t.id,slots:t.slots,vol:t.vol,reverb:t.reverb,chorus:t.chorus,drive:t.drive,comp:t.comp,delay:t.delay,improv:t.improv,program:t.program,octave:t.octave,echoBpm:t.echoBpm,echo:t.echo,echoRepeats:t.echoRepeats,echoFeedback:t.echoFeedback,hwEchoMs:t.hwEchoMs,hwEchoFeedback:t.hwEchoFeedback}))},null,2)],{type:'application/json'});const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='SOUND_PRINCESS_Inspiration_Banks.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);}
+$('exportBank').onclick=exportBank;
+$('importBank').onchange=async e=>{if(state.playing||trainerBusy){$('bankStatus').textContent='Stop playback before importing a bank.';e.target.value='';return;}const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());for(const t of TRACKS){if(Array.isArray(data.bank?.[t.id])){for(const b of data.bank[t.id]){if(!b||typeof b.id!=='string'||typeof b.name!=='string')continue;const p={id:b.id.slice(0,100),name:b.name.slice(0,70),description:String(b.description||'').slice(0,500),params:safeParams(b.params||{}),factory:!!b.factory};const ix=bank[t.id].findIndex(x=>x.id===p.id);if(ix>=0)bank[t.id][ix]=p;else bank[t.id].push(p);}}
+ const tr=(data.tracks||[]).find(x=>x.id===t.id);if(Number.isInteger(tr?.program)&&t.ch!==1&&t.ch!==10)t.program=clamp(tr.program,1,128);if(Array.isArray(tr?.slots)){t.slots=tr.slots.slice(0,10).map(s=>({id:bank[t.id].some(b=>b.id===s.id)?s.id:'',level:clamp(Number(s.level)||0,0,100)}));while(t.slots.length<10)t.slots.push({id:'',level:0});}}saveBanks();refillDesignerBank();drawMixer();redrawSteps();drawRack();invalidate();$('bankStatus').textContent='Preset banks imported.';}catch(err){$('bankStatus').textContent='Import failed: '+err.message;}finally{e.target.value='';}};
+$('saveBank').onclick=()=>{saveBanks();$('bankStatus').textContent='Current assignments saved. Export bank for a backup.'};
+$('train').onclick=async()=>{if(state.playing||trainerBusy){$('bankStatus').textContent='Stop playback before using the inspiration designer.';return;}
+ const t=getTrack(designerTarget),name=$('presetName').value.trim(),prompt=$('trainPrompt').value.trim(),key=$('apiKey').value.trim();if(!name||!prompt){$('bankStatus').textContent='Enter a name and describe the musical feel.';return}if(!key){$('bankStatus').textContent='Enter your Claude API key in the shared CLAUDE API box below.';return}
+ trainerBusy=true;syncDesignerLock();$('bankStatus').textContent='Claude is refining mathematical parameters for '+t.name+'…';
+ try{const paramsSchema=Object.fromEntries(PARAMS.map(n=>[n,{type:'number'}]));const format={type:'json_schema',schema:{type:'object',properties:{description:{type:'string'},params:{type:'object',properties:paramsSchema,required:PARAMS,additionalProperties:false}},required:['description','params'],additionalProperties:false}};
+ const body={model:$('model').value,max_tokens:1200,system:'You design mathematical MIDI groove transformations, not note sequences. Given a current inspiration parameter vector and the requested refinement, return an updated vector in the range [-100,100] for all eight parameters. timing positive delays notes, swing positive delays offbeat eighths, density negative removes notes and positive adds notes, ghost adds quiet extra hits, syncopation moves notes rhythmically, accent emphasizes downbeats or offbeats, articulation controls note length, harmonic adds scale-aware melodic variation. Preserve existing desirable traits unless asked to change. Return only structured JSON. Do not imitate specific recordings.',messages:[{role:'user',content:'Channel: '+t.name+'; preset: '+name+'. Current parameters: '+JSON.stringify(readDraft())+'. User refinement: '+prompt}],output_config:{format}};
+ const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify(body)});const data=await r.json();if(!r.ok)throw Error(data?.error?.message||'HTTP '+r.status);if(data.stop_reason==='max_tokens')throw Error('Response truncated — try again.');const raw=(data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');const res=JSON.parse(raw);drawParams(safeParams(res.params||{}));$('bankStatus').textContent='Claude refinement ready. PREVIEW 100% to hear it, then SAVE or SAVE AS NEW. Nothing overwritten yet.';
+ }catch(err){$('bankStatus').textContent='Training error: '+err.message;}finally{trainerBusy=false;syncDesignerLock();}};
+drawMixer();drawRack();syncDesignerLock();
+const noteShape={type:'object',properties:{beat:{type:'number'},note:{type:'integer'},dur:{type:'number'},vel:{type:'integer'}},required:['beat','note','dur','vel'],additionalProperties:false};
+const schema={type:'object',properties:{title:{type:'string'},vocal_kana:{type:'string'},drums:{type:'array',items:noteShape},bass:{type:'array',items:noteShape},chords:{type:'array',items:noteShape},chords2:{type:'array',items:noteShape},solo:{type:'array',items:noteShape}},required:['title','vocal_kana','drums','bass','chords','chords2','solo'],additionalProperties:false};
+function summaryInspo(){return TRACKS.map(t=>`${t.name}: ${t.slots.map((s,i)=>{const p=findPreset(t,s.id);return p&&s.level?`K${i+1} ${p.name} ${s.level}%`:null}).filter(Boolean).join(', ')||'all inspiration knobs at 0%'}, improvisation ${t.improv}%`).join('\n')}
+async function compose(){const key=$('apiKey').value.trim();if(!key){$('composeStatus').textContent='Enter your Claude API key in the shared CLAUDE API box to generate a song. Local randomize works without one.';return}const btn=$('compose');btn.disabled=true;$('composeStatus').textContent='Claude is composing four bars…';try{const payload={model:$('model').value,max_tokens:9500,system:'You are Yoko Studio, an original MIDI groove composer. Reply only with valid JSON matching the required schema. Generate original music, not a transcription or close imitation of any living artist. Each note item has beat (number in [0,16)), note (MIDI integer 0-127), dur (duration in quarter-note beats), vel (velocity 1-127). 4/4 four bars exactly, 16 beats total. Drum channel uses MIDI note 36 kick, 38 snare, 42 closed hi hat, 46 open hi hat, 37 sidestick, 54 tambourine, 56 cowbell, 39 clap. MIDI notes: bass octave 2–3, chords 3–5, solo 4–6. Make harmonic parts fit selected key and scale. At 0% drum inspiration use a simple rock beat in straight time with kick on 1 and 3, snare on 2 and 4, hi-hat eighths; other instruments can still vary harmonically. Inspirations are broad musical characteristics, not artist imitation. Generate 50–95 drum notes, 12–32 bass notes, 12–60 Chords A notes, 12–45 Chords B notes, 8–30 solo notes. Chords A on CH3 and Chords B on CH4 must complement each other in rhythm and register rather than doubling notes. Make the harmonic movement obey the selected number of chords (one, two, three or four) distributed through four bars. vocal_kana: short Japanese hiragana singable phrase (max 24 mora), no kanji, latin or digits. All sequences must be musical and coherent.',messages:[{role:'user',content:'Song prompt: '+$('prompt').value+'\nBPM '+$('bpm').value+'; key '+KEYNOTES[root()]+' '+$('scale').value+'; chord changes '+$('chordCount').value+'; four bars and 16 beats.\nIndividual inspiration controls:\n'+summaryInspo()}],output_config:{format:{type:'json_schema',schema}}};
+const response=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify(payload)});let data;try{data=await response.json()}catch{throw Error('Claude returned non-JSON HTTP '+response.status)};if(!response.ok)throw Error((data.error?.message||'Claude API failed')+' • HTTP '+response.status);if(data.stop_reason==='max_tokens')throw Error('Claude hit the token limit; try a shorter composition prompt.');const raw=(data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');const result=JSON.parse(raw);clearFixedGroove();for(const id of ['drums','bass','chords','chords2','solo'])state.base[id]=hydrateEvents(result[id]);if(result.vocal_kana&&!$('keepLyrics').checked)applyVocalProgram(result.vocal_kana,true);state.composerSource='claude';invalidate();$('composeStatus').textContent='Claude composed: '+(result.title||'Untitled')+' • MIDI loop ready.';log('Claude composition received: '+result.title+'; voice '+state.lyrics);
+ }catch(e){$('composeStatus').textContent='Claude composition error: '+e.message;log('Claude error: '+e.message)}finally{btn.disabled=false}}
+$('compose').onclick=compose;
+// LOOP MEMORY / exact-pattern capture. Keep this independent of the Claude key.
+const LOOP_STORE='sound_princess_loop_memories_v1';
+const LOOP_TRACK_SETTINGS=['mute','solo','improv','vol','pan','reverb','chorus','cutoff','resonance','attack','release','gate','program','octave','echo','echoMix','echoRepeats','echoFeedback','echoBpm','hwEchoMs','hwEchoFeedback','drive','comp','delay'];
+const deepCopy=x=>JSON.parse(JSON.stringify(x));
+const cleanEvent=e=>({beat:clamp(Number(e.beat)||0,0,15.999),note:clamp(Math.round(Number(e.note)||0),0,127),dur:clamp(Number(e.dur)||.1,.04,4),vel:clamp(Math.round(Number(e.vel)||1),1,127)});
+let loopMemories=[];
+try{const data=JSON.parse(localStorage.getItem(LOOP_STORE)||'[]');if(Array.isArray(data))loopMemories=data.filter(x=>x&&typeof x.id==='string'&&x.snapshot).slice(0,100)}catch(err){log('Loop bank storage not available: '+err.message)}
+function clearFixedGroove(){state.fixedParts=null;state.useFixed=false;state.lastHeard=null;}
+function copySourceParts(cycle){const parts={},voiceSections=[];
+ const played=sourceEventsForCycle(cycle);
+ for(const t of TRACKS){if(t.id==='voice')continue;parts[t.id]=played.filter(e=>e.t.id===t.id).map(cleanEvent);}
+ const vocalTrack=getTrack('voice'),sections=state.vocalSections||[];
+ for(let i=0;i<sections.length;i++){
+  const active=cycle%sections.length===i;
+  const v=active?played.filter(e=>e.t.id==='voice'):applyDNA(vocalTrack,improvised(vocalTrack,i,sections[i].notes),i);
+  voiceSections.push(v.map(cleanEvent));
+ }
+ return {parts,voiceSections};
+}
+function snapshotLoop(){const activeCycle=state.playing?Math.max(0,Math.floor((performance.now()-state.loopStart)/(60000/state.bpm*16))):Math.max(0,state.lastHeard?.cycle??0);
+ // Use the actual audible, already transformed MIDI notes, not just the random generator seed.
+ const fixed=state.useFixed&&state.fixedParts?deepCopy(state.fixedParts):(!state.playing&&state.lastHeard?.parts?deepCopy(state.lastHeard.parts):copySourceParts(activeCycle));
+ return {format:1,base:deepCopy(state.base),fixed,progression:[...state.progression],source:state.composerSource,
+  global:{bpm:clamp(+$('bpm').value||110,50,220),key:$('key').value,scale:$('scale').value,chordCount:$('chordCount').value,swingMs},
+  vocal:{lyrics:state.lyrics,contour:$('vocalContour').value,keep:$('keepLyrics').checked,sections:deepCopy(state.vocalSections),stats:deepCopy(state.vocalStats)},
+  tracks:TRACKS.map(t=>({id:t.id,settings:Object.fromEntries(LOOP_TRACK_SETTINGS.map(k=>[k,t[k]])),slots:deepCopy(t.slots),usedPresets:t.slots.map(slot=>{const p=bank[t.id]?.find(b=>b.id===slot.id);return p?deepCopy(p):null}).filter(Boolean)})),
+  master:{reverbType:$('reverbType').value,chorusType:$('chorusType').value,params:deepCopy(masterFx)}};
+}
+function refreshLoopBank(preferId){const sel=$('memorySelect'),id=preferId||sel.value;sel.replaceChildren(new Option('— SELECT SAVED LOOP —',''));
+ for(const r of loopMemories.slice().sort((a,b)=>b.savedAt.localeCompare(a.savedAt))){const date=new Date(r.savedAt);sel.add(new Option(r.name+' · '+(isNaN(date.getTime())?'saved':date.toLocaleDateString()),r.id));}
+ if(loopMemories.some(r=>r.id===id))sel.value=id;
+ $('memoryCount').textContent=loopMemories.length+' SAVED';
+ const disabled=!sel.value;for(const key of ['recallLoop','renameLoop','deleteLoop'])$(key).disabled=disabled;
+}
+function persistLoopBank(){try{localStorage.setItem(LOOP_STORE,JSON.stringify(loopMemories));return true;}catch(err){$('memoryStatus').textContent='Could not store loops in this browser ('+err.message+'). Use EXPORT LOOP BANK to keep a backup.';return false;}}
+function loopMessage(msg){$('memoryStatus').textContent=msg;log(msg)}
+function selectedMemory(){return loopMemories.find(r=>r.id===$('memorySelect').value)}
+$('rememberLoop').onclick=()=>{
+ if(previewSession){loopMessage('Stop Inspiration Preview before saving a loop.');return;}
+ const name=$('memoryName').value.trim().slice(0,72)||'Untitled Loop';
+ if(loopMemories.length>=100){loopMessage('Loop bank is at its 100-entry limit; export the bank and delete old loops first.');return;}
+ try{const record={id:'loop_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,9),name,savedAt:new Date().toISOString(),snapshot:snapshotLoop()};
+  loopMemories.push(record);const saved=persistLoopBank();refreshLoopBank(record.id);
+  loopMessage('Remembered “'+name+'” — all 6 channels, lyrics, FX, inspiration presets, and the exact captured 16-beat groove. '+(saved?'Saved locally.':'Export bank for backup.'));
+ }catch(err){loopMessage('Loop capture failed: '+err.message)}
+};
+$('memorySelect').onchange=()=>{const record=selectedMemory();if(record)$('memoryName').value=record.name;refreshLoopBank()};
+function safeSnapshot(snapshot){return snapshot&&snapshot.global&&snapshot.base&&snapshot.tracks&&Array.isArray(snapshot.tracks)&&snapshot.fixed&&snapshot.vocal;}
+function restoreLoop(snapshot){if(!safeSnapshot(snapshot))throw Error('Missing loop data.');
+ if(state.playing)stop();
+ const g=snapshot.global;
+ $('bpm').value=clamp(+g.bpm||110,50,220);state.bpm=+$('bpm').value;
+ if([...$('key').options].some(o=>o.value===String(g.key)))$('key').value=String(g.key);
+ if([...$('scale').options].some(o=>o.value===g.scale))$('scale').value=g.scale;
+ if([...$('chordCount').options].some(o=>o.value===String(g.chordCount)))$('chordCount').value=String(g.chordCount);
+ setSwing(clamp(+g.swingMs||0,-60,60));
+ state.progression=Array.isArray(snapshot.progression)?snapshot.progression.slice(0,4):[0,5,3,4];
+ for(const id of Object.keys(state.base))state.base[id]=hydrateEvents(snapshot.base[id]);
+ const v=snapshot.vocal;state.lyrics=String(v.lyrics||'').slice(0,5000);$('vocalLyrics').value=state.lyrics;
+ if(['gentle','playful','rising'].includes(v.contour))$('vocalContour').value=v.contour;
+ $('keepLyrics').checked=!!v.keep;
+ state.vocalSections=(Array.isArray(v.sections)?v.sections:[]).map(sec=>({codes:(Array.isArray(sec.codes)?sec.codes:[]).filter(c=>Number.isInteger(c)&&c>=0&&c<=127).slice(0,32),notes:hydrateEvents(sec.notes),kana:String(sec.kana||'')}));
+ state.vocalStats={syllables:Math.max(0,+v.stats?.syllables||state.vocalSections.reduce((a,s)=>a+s.codes.length,0)),passes:state.vocalSections.length,unsupported:Array.isArray(v.stats?.unsupported)?v.stats.unsupported:[],truncated:!!v.stats?.truncated};
+ state.pendingVocal=null;state.composerSource=String(snapshot.source||'memory');
+ // Keep the exact sound of saved inspiration even when the source preset has later changed.
+ for(const td of snapshot.tracks){const t=getTrack(td.id);if(!t)continue;
+  for(const k of LOOP_TRACK_SETTINGS){const raw=td.settings?.[k];if(typeof raw==='boolean'&&['mute','solo'].includes(k))t[k]=raw;else if(k==='echo'&&typeof raw==='string'&&['1/16','1/8','Dotted 1/8','1/4','1/2','off'].includes(raw))t[k]=raw;else if(k!=='echo'&&Number.isFinite(Number(raw))&&raw!==null&&raw!==undefined)t[k]=Number(raw);}
+  const presets=Array.isArray(td.usedPresets)?td.usedPresets:[];
+  const remap=new Map();
+  for(const original of presets){if(!original||typeof original.id!=='string'||typeof original.name!=='string')continue;
+   const existing=bank[t.id].find(p=>p.id===original.id),params=safeParams(original.params);
+   if(existing&&JSON.stringify(safeParams(existing.params))===JSON.stringify(params)){remap.set(original.id,original.id);continue;}
+   // Protect the current bank: create a separate archival entry instead of overwriting edited DNA.
+   const sig=JSON.stringify({track:t.id,id:original.id,params});let hash=2166136261;for(let i=0;i<sig.length;i++){hash^=sig.charCodeAt(i);hash=Math.imul(hash,16777619)}
+   const archivalId='remembered_'+String(original.id).slice(0,40)+'_'+(hash>>>0).toString(36);
+   if(!bank[t.id].some(b=>b.id===archivalId))bank[t.id].push({id:archivalId,name:String(original.name).slice(0,60)+' [MEM]',params,description:String(original.description||'').slice(0,500),factory:false});
+   remap.set(original.id,archivalId);
+  }
+  if(Array.isArray(td.slots))t.slots=Array.from({length:10},(_,i)=>{const s=td.slots[i];return {id:remap.get(s?.id)|| (bank[t.id].some(p=>p.id===s?.id)?s.id:''),level:clamp(+s?.level||0,0,100)}});
+ }
+ const ma=snapshot.master;if(ma){for(const [kind,id] of [['reverb','reverbType'],['chorus','chorusType']]){if([...$(id).options].some(o=>o.value===ma[kind+'Type']))$(id).value=ma[kind+'Type'];}
+  for(const [kind,defs] of Object.entries(MASTER_FX_DEFS)){for(const [key,label,addr,min,max] of defs){const v=ma.params?.[kind]?.[key];if(Number.isFinite(Number(v)))masterFx[kind][key]=clamp(+v,min,max);const input=document.querySelector(`[data-master-fx="${kind}"][data-master-key="${key}"]`);if(input){input.value=masterFx[kind][key];input.nextElementSibling.textContent=masterFx[kind][key];}}}}
+ state.fixedParts={parts:Object.fromEntries(TRACKS.filter(t=>t.id!=='voice').map(t=>[t.id,hydrateEvents(snapshot.fixed.parts?.[t.id])])),voiceSections:(Array.isArray(snapshot.fixed.voiceSections)?snapshot.fixed.voiceSections:[]).map(hydrateEvents)};
+ state.useFixed=$('lockCapturedGroove').checked;
+ state.lastHeard=null;
+ $('hwMasterEchoMs').value=getTrack('voice').hwEchoMs;
+ $('hwMasterEchoFeedback').value=getTrack('voice').hwEchoFeedback;
+ $('hwMasterEchoFeedbackValue').textContent=getTrack('voice').hwEchoFeedback+'%';
+ saveBanks();saveEffectSelections();persistVocal();invalidate();drawMixer();drawRack();refillDesignerBank();refreshVocalStatus();prime();applyHardwareEffectTypes();configureVoiceEcho();
+}
+$('recallLoop').onclick=()=>{const record=selectedMemory();if(!record){loopMessage('Select a remembered loop first.');return;}try{restoreLoop(record.snapshot);loopMessage('Recalled “'+record.name+'”. '+(state.useFixed?'Captured groove locked: exact notes repeat every pass.':'Live improvisation re-enabled.')+' Press PLAY to hear it.');}catch(err){loopMessage('Could not recall loop: '+err.message)}};
+$('renameLoop').onclick=()=>{const r=selectedMemory();if(!r)return;const name=$('memoryName').value.trim().slice(0,72);if(!name){loopMessage('Enter a new loop name.');return;}r.name=name;persistLoopBank();refreshLoopBank(r.id);loopMessage('Renamed loop to “'+name+'”.')};
+$('deleteLoop').onclick=()=>{const r=selectedMemory();if(!r)return;if(!confirm('Delete saved loop “'+r.name+'”?'))return;loopMemories=loopMemories.filter(x=>x.id!==r.id);persistLoopBank();refreshLoopBank();loopMessage('Deleted “'+r.name+'” from the local bank. Your currently loaded loop has not changed.')};
+$('lockCapturedGroove').onchange=e=>{if(!state.fixedParts){e.target.checked=false;loopMessage('Recall a remembered loop first to lock its captured notes.');return;}state.useFixed=!!e.target.checked;invalidate();loopMessage(state.useFixed?'Captured MIDI notes locked: the same groove repeats each pass.':'Groove unlocked: inspiration and improvisation transformations run live.');};
+function downloadJson(data,name){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+$('exportLoops').onclick=()=>{downloadJson({app:'SOUND PRINCESS',format:'loop-bank-v1',exportedAt:new Date().toISOString(),loops:loopMemories},'SOUND_PRINCESS_Remembered_Loops.json');loopMessage('Exported '+loopMemories.length+' remembered loops as JSON (without Claude API keys).')};
+$('importLoops').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text()),items=Array.isArray(data)?data:data?.loops;if(!Array.isArray(items))throw Error('This is not a SOUND PRINCESS loop bank.');let added=0;for(const item of items.slice(0,100)){if(!item||!safeSnapshot(item.snapshot)||typeof item.name!=='string')continue;const record={id:typeof item.id==='string'?item.id:'imported_'+Date.now()+'_'+added,name:item.name.slice(0,72),savedAt:/^\d{4}-/.test(item.savedAt||'')?item.savedAt:new Date().toISOString(),snapshot:item.snapshot};if(loopMemories.some(x=>x.id===record.id))record.id='imported_'+Date.now()+'_'+Math.floor(Math.random()*1e8);if(loopMemories.length>=100)break;loopMemories.push(record);added++;}persistLoopBank();refreshLoopBank();loopMessage('Imported '+added+' loop memories. Select one and press RECALL.');}catch(err){loopMessage('Import failed: '+err.message)}finally{e.target.value=''}};
+refreshLoopBank();
+$('save').onclick=()=>{const obj={version:'0.3.2',bpm:$('bpm').value,key:$('key').value,scale:$('scale').value,progression:state.progression,lyrics:state.lyrics,vocalContour:$('vocalContour').value,keepLyrics:$('keepLyrics').checked,tracks:TRACKS.map(t=>({...t})),notes:state.base,bank,slots:Object.fromEntries(TRACKS.map(t=>[t.id,t.slots]))};const b=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'});const url=URL.createObjectURL(b);const a=document.createElement('a');a.href=url;a.download='SOUND_PRINCESS_project.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+window.addEventListener('pagehide',stop);
+generate('all');log('SOUND PRINCESS loaded • 6-channel console ready.');
+})();
+</script></body></html>
